@@ -311,12 +311,12 @@ size.addEventListener("input", e => setSize(e.target.value));
 const FILES = ["diawwharun.mp3", "diawharun2.mp3"];
 // Repères intégrés : bayt -> [n° de fichier, secondes]. 0 = ouverture.
 const BAKED_TIMES = {
-  0:[0,307.0], 1:[0,521.4], 2:[0,569.3], 3:[0,606.8], 4:[0,619.9], 5:[0,651.9], 6:[0,706.6],
-  7:[1,0], 8:[1,29.5], 9:[1,61.3], 10:[1,77.2], 11:[1,270.2], 12:[1,299.6], 13:[1,318.8], 14:[1,356.4],
-  15:[1,410.2], 16:[1,465.8], 17:[1,474.8], 18:[1,529.6], 19:[1,536.9], 20:[1,544.8], 21:[1,566.0], 22:[1,634.5]
+  0:[0,307.27], 1:[0,521.1], 2:[0,569.0], 3:[0,606.97], 4:[0,620.46], 5:[0,651.6], 6:[0,706.53],
+  7:[1,0], 8:[1,24.42], 9:[1,60.83], 10:[1,77.59], 11:[1,270.19], 12:[1,299.33], 13:[1,318.33], 14:[1,356.93],
+  15:[1,409.51], 16:[1,465.77], 17:[1,487.9], 18:[1,527.17], 19:[1,536.06], 20:[1,544.48], 21:[1,564.85], 22:[1,633.22]
 };
 let times = Object.assign({}, BAKED_TIMES);
-try{ const saved = JSON.parse(localStorage.getItem("jn-times2") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
+try{ const saved = JSON.parse(localStorage.getItem("jn-times3") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
 
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play"), playIco = document.getElementById("play-ico");
@@ -353,7 +353,7 @@ function refresh(){
   const obj = {}; Object.keys(times).map(Number).sort((a,b)=>a-b).forEach(k => obj[k] = [times[k][0], Math.round(times[k][1]*10)/10]);
   out.value = JSON.stringify(obj);
 }
-function save(){ try{ localStorage.setItem("jn-times2", JSON.stringify(times)); }catch(e){} }
+function save(){ try{ localStorage.setItem("jn-times3", JSON.stringify(times)); }catch(e){} }
 function setActive(n){
   if (current === n) return;
   if (current != null && els(current)) els(current).classList.remove("active");
@@ -407,7 +407,7 @@ document.getElementById("copy-times").addEventListener("click", () => {
   navigator.clipboard.writeText(out.value).then(() => msg.textContent = "Copié.", () => { out.select(); msg.textContent = "Sélectionné : copie avec ton clavier."; });
 });
 document.getElementById("clear-times").addEventListener("click", () => {
-  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times2"); }catch(e){} refresh();
+  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times3"); }catch(e){} refresh();
 });
 refresh();
 
