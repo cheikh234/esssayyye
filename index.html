@@ -1,17 +1,15 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Al-Jawhar an-Nafîs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
-/* Layout : une colonne de lecture centrée ; chaque bayt = deux hémistiches côte à côte (empilés sur mobile), traduction dessous. Halo doré venant du bas sur brun profond. */
+/* Layout : colonne de lecture centrée ; chaque bayt est une carte (médaillon étoilé à gauche, deux hémistiches séparés par une rosace, traduction dessous). Brun profond, halo doré venant du bas, trame géométrique discrète. */
 :root{
-  --bg:#1c140e; --bg-2:#241a12; --surface:#2a1f16; --line:#4a3826;
-  --gold:#e9c98e; --gold-deep:#c9a463; --ink:#f3e8d6; --muted:#b9a68a; --halo:rgba(233,201,142,.22);
+  --bg:#17100b; --bg-2:#1f1610; --surface:#251a12; --surface-2:#2e2117; --line:#46331f;
+  --gold:#e9c98e; --gold-deep:#c79f5c; --ink:#f4ead9; --muted:#b5a183; --halo:rgba(233,201,142,.20);
+  --on-gold:#1d140d; --shadow:0 18px 40px -18px rgba(0,0,0,.65);
   --f-ar:"Amiri","Scheherazade New","Noto Naskh Arabic","Traditional Arabic",serif;
   --f-display:"Marcellus","Cinzel",Georgia,serif;
   --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -19,129 +17,196 @@
   color-scheme:dark;
 }
 @media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
-  --bg:#f6efe2; --bg-2:#efe4d0; --surface:#fbf6ec; --line:#dcc9a6;
-  --gold:#8a6424; --gold-deep:#a47a33; --ink:#2b1f14; --muted:#6f5c44; --halo:rgba(201,164,99,.28);
+  --bg:#f5eddf; --bg-2:#ede1cb; --surface:#fdf8ef; --surface-2:#f6ecda; --line:#e0cca8;
+  --gold:#8a6424; --gold-deep:#a8803c; --ink:#2a1e13; --muted:#6e5a42; --halo:rgba(201,164,99,.30);
+  --on-gold:#fdf8ef; --shadow:0 18px 36px -20px rgba(90,60,20,.35);
   color-scheme:light;}}
 :root[data-theme="light"]{
-  --bg:#f6efe2; --bg-2:#efe4d0; --surface:#fbf6ec; --line:#dcc9a6;
-  --gold:#8a6424; --gold-deep:#a47a33; --ink:#2b1f14; --muted:#6f5c44; --halo:rgba(201,164,99,.28);
+  --bg:#f5eddf; --bg-2:#ede1cb; --surface:#fdf8ef; --surface-2:#f6ecda; --line:#e0cca8;
+  --gold:#8a6424; --gold-deep:#a8803c; --ink:#2a1e13; --muted:#6e5a42; --halo:rgba(201,164,99,.30);
+  --on-gold:#fdf8ef; --shadow:0 18px 36px -20px rgba(90,60,20,.35);
   color-scheme:light;}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
-  background-image:radial-gradient(120% 60% at 50% 105%,var(--halo),transparent 70%);background-attachment:fixed;}
-.wrap{max-width:860px;margin:0 auto;padding-block:40px 80px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+  background-image:radial-gradient(130% 70% at 50% 110%,var(--halo),transparent 70%);background-attachment:fixed}
+/* trame d'étoiles à huit branches, teintée par le thème */
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--gold);opacity:.045;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23000' stroke-width='1'%3E%3Crect x='20' y='20' width='24' height='24'/%3E%3Crect x='20' y='20' width='24' height='24' transform='rotate(45 32 32)'/%3E%3Cpath d='M0 32h8M56 32h8M32 0v8M32 56v8'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23000' stroke-width='1'%3E%3Crect x='20' y='20' width='24' height='24'/%3E%3Crect x='20' y='20' width='24' height='24' transform='rotate(45 32 32)'/%3E%3Cpath d='M0 32h8M56 32h8M32 0v8M32 56v8'/%3E%3C/g%3E%3C/svg%3E")}
+.wrap{max-width:880px;margin:0 auto;padding-block:36px 150px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-header.hero{text-align:center;padding-block:28px 36px;display:grid;gap:10px;justify-items:center}
-.eyebrow{font-family:var(--f-display);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--muted)}
-.hero h1{font-family:var(--f-ar);font-weight:700;font-size:clamp(2.4rem,7vw,3.6rem);line-height:1.5;color:var(--gold);margin:0;direction:rtl}
-.hero .sub-ar{font-family:var(--f-ar);font-size:clamp(1.3rem,3.6vw,1.7rem);color:var(--ink);margin:0;direction:rtl}
-.hero .fr{font-family:var(--f-display);font-size:clamp(1.1rem,3vw,1.35rem);margin:6px 0 0;color:var(--ink);text-wrap:balance}
-.hero .author{font-size:.95rem;color:var(--muted);font-style:italic;margin:0;max-width:52ch}
-.ornament{width:180px;max-width:60%;height:14px;color:var(--gold-deep)}
+/* En-tête */
+header.hero{text-align:center;padding-block:20px 34px;display:grid;gap:8px;justify-items:center}
+.khatam{width:92px;height:92px;color:var(--gold-deep);margin-bottom:6px}
+.eyebrow{font-family:var(--f-display);letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--muted)}
+.hero h1{font-family:var(--f-ar);font-weight:700;font-size:clamp(2.6rem,8vw,4rem);line-height:1.45;color:var(--gold);margin:0;direction:rtl;
+  text-shadow:0 0 38px color-mix(in srgb,var(--gold) 30%,transparent)}
+.hero .sub-ar{font-family:var(--f-ar);font-size:clamp(1.3rem,3.8vw,1.75rem);color:var(--ink);margin:0;direction:rtl}
+.ornament{width:220px;max-width:70%;height:16px;color:var(--gold-deep);margin-block:6px}
+.hero .fr{font-family:var(--f-display);font-size:clamp(1.05rem,3vw,1.3rem);margin:0;color:var(--ink);text-wrap:balance;max-width:34ch}
+.hero .author{font-size:.92rem;color:var(--muted);font-style:italic;margin:0;max-width:52ch;text-wrap:balance}
+.stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.stat{font-family:var(--f-display);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:color-mix(in srgb,var(--surface) 70%,transparent)}
 
-.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:center;
-  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-block:1px solid var(--line);
-  padding-block:10px;margin-block:8px 28px;font-size:.85rem;color:var(--muted)}
+/* Barre d'outils */
+.toolbar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:5;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:999px;padding:7px 10px;margin:6px auto 30px;width:fit-content;max-width:100%;font-size:.84rem;color:var(--muted);box-shadow:var(--shadow)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.toolbar button{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
-.toolbar button[aria-pressed="true"]{border-color:var(--gold-deep);color:var(--gold)}
+.toolbar button{font:inherit;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:999px;padding:6px 14px;cursor:pointer}
+.toolbar button:hover{border-color:var(--line)}
+.toolbar button[aria-pressed="true"]{background:var(--gold);color:var(--on-gold)}
 .toolbar button:focus-visible,.toolbar input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.size{display:flex;align-items:center;gap:8px}
-.size input{accent-color:var(--gold-deep);width:110px}
+.size{display:flex;align-items:center;gap:8px;padding-inline:6px}
+.size input{accent-color:var(--gold-deep);width:100px}
 
-.opening{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px clamp(18px,4vw,36px);display:grid;gap:18px;margin-bottom:44px}
-.opening .ar{font-family:var(--f-ar);direction:rtl;text-align:justify;font-size:calc(var(--ar-size)*.82);line-height:2.1;margin:0}
-.opening .fr-block{font-size:.95rem;color:var(--muted);margin:0;display:grid;gap:6px}
+/* Ouverture */
+.opening{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px clamp(18px,4vw,40px);display:grid;gap:18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.opening .ar{font-family:var(--f-ar);direction:rtl;text-align:justify;font-size:calc(var(--ar-size)*.84);line-height:2.15;margin:0}
+.opening .fr-block{font-size:.95rem;color:var(--muted);margin:0;display:grid;gap:6px;border-top:1px dashed var(--line);padding-top:14px}
 .opening .fr-block p{margin:0}
 
-.section-title{display:grid;justify-items:center;gap:4px;margin:56px 0 26px;text-align:center}
-.section-title .ar{font-family:var(--f-ar);font-weight:700;font-size:calc(var(--ar-size)*1.02);color:var(--gold);direction:rtl;margin:0}
-.section-title .fr{font-family:var(--f-display);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+/* Titres de section et pages */
+.section-title{display:grid;justify-items:center;gap:2px;margin:46px 0 18px;text-align:center}
+.section-title .ar{font-family:var(--f-ar);font-weight:700;font-size:calc(var(--ar-size)*1.05);color:var(--gold);direction:rtl;margin:0;display:flex;align-items:center;gap:14px}
+.section-title .ar::before,.section-title .ar::after{content:"";width:9px;height:9px;border:1px solid var(--gold-deep);transform:rotate(45deg);flex:none}
+.section-title .fr{font-family:var(--f-display);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0}
+.page-mark{display:flex;align-items:center;gap:12px;margin:34px 0 14px;color:var(--muted);font-family:var(--f-display);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase}
+.page-mark::before,.page-mark::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+.page-mark::after{background:linear-gradient(90deg,var(--line),transparent)}
+.page-mark .ar-n{font-family:var(--f-ar);letter-spacing:0;font-size:1rem;text-transform:none}
 
-.verses{list-style:none;margin:0;padding:0;display:grid}
-.bayt{display:grid;grid-template-columns:44px 1fr;gap:4px 16px;padding-block:22px;border-bottom:1px solid var(--line)}
-.num{grid-row:1/3;align-self:start;margin-top:.55rem;width:40px;height:40px;display:grid;place-items:center;
-  font-family:var(--f-display);font-size:.82rem;color:var(--gold);font-variant-numeric:tabular-nums;position:relative}
-.num::before{content:"";position:absolute;inset:4px;border:1px solid var(--gold-deep);transform:rotate(45deg);opacity:.7}
-.ar-line{direction:rtl;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(18px,5vw,48px);font-family:var(--f-ar);font-size:var(--ar-size);line-height:2;min-width:0}
+/* Bayts */
+.verses{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bayt{position:relative;display:grid;grid-template-columns:52px 1fr;gap:2px 18px;padding:18px 22px 18px 16px;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.num{grid-row:1/4;align-self:start;margin-top:.5rem;width:46px;height:46px;display:grid;place-items:center;
+  font-family:var(--f-display);font-size:.86rem;color:var(--gold);font-variant-numeric:tabular-nums;position:relative}
+.num::before,.num::after{content:"";position:absolute;inset:8px;border:1px solid var(--gold-deep);opacity:.75}
+.num::before{transform:rotate(45deg)}
+.ar-line{direction:rtl;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:clamp(12px,3vw,26px);
+  font-family:var(--f-ar);font-size:var(--ar-size);line-height:2;min-width:0;margin:0}
 .ar-line span{min-width:0}
 .ar-line .s1{text-align:right}
 .ar-line .s2{text-align:left}
-.fr-line{margin:4px 0 0;color:var(--muted);font-size:1rem;max-width:62ch;min-width:0}
+.ar-line .sep{width:7px;height:7px;background:var(--gold-deep);transform:rotate(45deg);opacity:.7}
+.fr-line{margin:2px 0 0;color:var(--muted);font-size:.98rem;max-width:64ch;min-width:0}
 .hide-fr .fr-line{display:none}
-.page-mark{display:flex;align-items:center;gap:12px;margin:30px 0 4px;color:var(--muted);font-family:var(--f-display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
-.page-mark::before,.page-mark::after{content:"";flex:1;height:1px;background:var(--line)}
+.kprog{position:absolute;left:0;right:0;bottom:0;height:3px;background:color-mix(in srgb,var(--gold) 14%,transparent);opacity:0;transition:opacity .2s}
+.kprog i{display:block;height:100%;background:var(--gold);transform-origin:left;transform:scaleX(var(--p,0))}
 
-.continue{text-align:center;margin-top:36px;color:var(--muted);font-style:italic;font-size:.9rem}
-footer{margin-top:48px;text-align:center;color:var(--muted);font-size:.8rem;display:grid;gap:4px}
+.continue{text-align:center;margin-top:40px;color:var(--muted);font-style:italic;font-size:.9rem}
+footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.78rem;display:grid;gap:4px;opacity:.85}
 
-/* Audio */
-.bayt,.opening{cursor:pointer;transition:background-color .2s}
-.bayt{border-radius:4px;padding-inline:8px;margin-inline:-8px}
+/* États audio */
+.bayt,.opening{cursor:pointer}
 .bayt.no-audio,.opening.no-audio{cursor:default}
-.bayt:hover:not(.no-audio){background:color-mix(in srgb,var(--gold) 6%,transparent)}
-.bayt.active{background:color-mix(in srgb,var(--gold) 13%,transparent)}
-.bayt.active .num::before{opacity:1;background:color-mix(in srgb,var(--gold) 20%,transparent)}
+.bayt:not(.no-audio):hover{border-color:color-mix(in srgb,var(--gold-deep) 55%,var(--line))}
+.bayt.active{border-color:var(--gold-deep);background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 9%,var(--surface)),var(--surface));
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 25%,transparent),var(--shadow)}
+.bayt.active .kprog{opacity:1}
+.bayt.active .num::before,.bayt.active .num::after{opacity:1;background:color-mix(in srgb,var(--gold) 16%,transparent)}
 .opening.active{border-color:var(--gold-deep)}
-.num.has-audio::after{content:"";position:absolute;right:-6px;bottom:-2px;width:0;height:0;border-left:7px solid var(--gold);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
-.opening:not(.no-audio)::before{content:"Écouter l'ouverture";font-family:var(--f-display);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.mark{display:none;justify-self:start;font:inherit;font-size:.8rem;color:var(--bg);background:var(--gold-deep);border:0;border-radius:999px;padding:5px 12px;margin-top:6px;cursor:pointer}
+.listen{position:absolute;top:12px;left:12px;display:none;align-items:center;gap:5px;font-family:var(--f-display);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.listen::before{content:"";width:0;height:0;border-left:6px solid var(--gold);border-top:4px solid transparent;border-bottom:4px solid transparent}
+.num.has-audio::after{border-color:var(--gold)}
+.num.has-audio{color:var(--gold)}
+.bayt:not(.no-audio) .num{cursor:pointer}
+.has-dot{position:absolute;top:10px;right:12px;width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.bayt.no-audio .has-dot{display:none}
+.opening:not(.no-audio)::before{content:"Écouter l'ouverture";font-family:var(--f-display);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+/* Mode calage */
+.mark{display:none;justify-self:start;font:inherit;font-size:.8rem;color:var(--on-gold);background:var(--gold-deep);border:0;border-radius:999px;padding:5px 12px;margin-top:6px;cursor:pointer}
 .sync .mark{display:inline-flex;gap:6px;align-items:center}
 .mark .t{font-variant-numeric:tabular-nums;opacity:.8}
-.bayt .mark{grid-column:2}
-.player{position:fixed;left:0;right:0;bottom:0;z-index:8;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);
-  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.player-in{max-width:860px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:10px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.pbtn{font:inherit;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold-deep);background:transparent;color:var(--gold);display:grid;place-items:center;cursor:pointer;flex:none}
-.pbtn.small{width:auto;height:32px;border-radius:999px;padding:0 10px;font-size:.78rem}
-.pbtn:focus-visible,.mark:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.pinfo{flex:1;min-width:160px;display:grid;gap:4px}
-.pinfo .now{font-size:.85rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pinfo input{width:100%;accent-color:var(--gold-deep)}
-.ptime{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
-.sync-tools{display:none;gap:8px;flex-wrap:wrap}
-.sync .sync-tools{display:flex}
-.export{display:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;margin-bottom:30px;gap:10px}
+.bayt .nudges{grid-column:2}
+.nudges{display:none;gap:6px;flex-wrap:wrap;align-items:center}
+.sync .nudges{display:flex}
+.nudge{font:inherit;font-size:.78rem;color:var(--gold);background:transparent;border:1px solid var(--gold-deep);border-radius:999px;padding:4px 10px;margin-top:6px;cursor:pointer}
+.nudge:focus-visible,.mark:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.export{display:none;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:24px;gap:10px}
 .sync .export{display:grid}
 .export p{margin:0;font-size:.9rem;color:var(--muted)}
-.export textarea{width:100%;min-height:90px;font:12px/1.4 ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:8px}
-.export .row{display:flex;gap:8px;flex-wrap:wrap}
+.export textarea{width:100%;min-height:90px;font:12px/1.4 ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+.export .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .export button{font:inherit;font-size:.85rem;color:var(--ink);background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
-.wrap{padding-bottom:140px}
+
+/* Lecteur flottant */
+.player{position:fixed;left:0;right:0;bottom:0;z-index:8;pointer-events:none;
+  padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px);padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.player-in{pointer-events:auto;max-width:820px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 16px 10px 10px;
+  background:color-mix(in srgb,var(--surface-2) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.pbtn{font:inherit;width:48px;height:48px;border-radius:50%;border:0;background:var(--gold);color:var(--on-gold);display:grid;place-items:center;cursor:pointer;flex:none;
+  box-shadow:0 6px 18px -6px color-mix(in srgb,var(--gold) 70%,transparent)}
+.pbtn.small{width:auto;height:30px;border-radius:999px;padding:0 11px;font-size:.76rem;background:transparent;color:var(--gold);border:1px solid var(--line);box-shadow:none}
+.pbtn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.pinfo{flex:1;min-width:150px;display:grid;gap:6px}
+.pinfo .now{font-family:var(--f-display);font-size:.82rem;letter-spacing:.06em;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#seek{-webkit-appearance:none;appearance:none;width:100%;height:16px;background:transparent;cursor:pointer;margin:0}
+#seek::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--gold) var(--fill,0%),var(--line) var(--fill,0%))}
+#seek::-moz-range-track{height:4px;border-radius:4px;background:var(--line)}
+#seek::-moz-range-progress{height:4px;border-radius:4px;background:var(--gold)}
+#seek::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);margin-top:-5px;border:2px solid var(--surface-2)}
+#seek::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--surface-2)}
+#seek:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+.ptime{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.part{display:flex;align-items:center;gap:6px}
+.part select{font:inherit;font-size:.76rem;color:var(--gold);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer}
+.part select option{background:var(--surface);color:var(--ink)}
+.sync-tools{display:none;gap:6px;flex-wrap:wrap}
+.sync .sync-tools{display:flex}
 
 @media (max-width:620px){
-  .ar-line{grid-template-columns:1fr;row-gap:2px}
-  .ar-line .s1{text-align:right}
-  .ar-line .s2{text-align:left;padding-right:18%}
-  .bayt{grid-template-columns:34px 1fr;gap:4px 10px}
-  .num{width:32px;height:32px;font-size:.74rem}
+  .ar-line{grid-template-columns:1fr;row-gap:0}
+  .ar-line .sep{display:none}
+  .ar-line .s2{padding-right:14%}
+  .bayt{grid-template-columns:36px 1fr;gap:2px 10px;padding:16px 14px 16px 10px}
+  .num{width:36px;height:36px;font-size:.74rem}
+  .num::before,.num::after{inset:6px}
+  .toolbar{border-radius:18px}
+  .player-in{border-radius:18px}
+  .opening .ar{text-align:right}
+  :root{--ar-size:1.38rem}
+  .toolbar{font-size:.78rem;gap:6px 8px;padding:6px 8px}
+  .toolbar button{padding:6px 11px}
+  .size input{width:80px}
+  .pbtn{width:42px;height:42px}
+  .player-in{gap:6px 10px;padding:8px 12px 8px 8px}
+  .part{font-size:0}
+  .part select{font-size:.74rem}
+  .size span{display:none}
 }
-@media (prefers-reduced-motion:no-preference){.toolbar button{transition:border-color .2s,color .2s}}
+@media (prefers-reduced-motion:no-preference){
+  .bayt{transition:border-color .25s,box-shadow .25s,background-color .25s}
+  .toolbar button{transition:background-color .2s,color .2s,border-color .2s}
+}
 </style>
-</head>
-<body>
+
 <div class="wrap" id="top">
   <header class="hero">
+    <svg class="khatam" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><rect x="22" y="22" width="56" height="56"/><rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="17"/><circle cx="50" cy="50" r="44" stroke-dasharray="2 4"/></g><path d="M50 40l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="currentColor"/></svg>
     <span class="eyebrow">Fiqh · Versification de l'Akhdari</span>
-    <svg class="ornament" viewBox="0 0 180 14" aria-hidden="true"><path d="M0 7h70M110 7h70" stroke="currentColor" stroke-width="1"/><path d="M90 1l6 6-6 6-6-6z" fill="none" stroke="currentColor"/><circle cx="78" cy="7" r="1.6" fill="currentColor"/><circle cx="102" cy="7" r="1.6" fill="currentColor"/></svg>
     <h1>الْجَوْهَرُ النَّفِيسُ</h1>
     <p class="sub-ar">فِي عَقْدِ نَثْرِ الْأَخْضَرِيِّ الرَّئِيسِ</p>
+    <svg class="ornament" viewBox="0 0 220 16" aria-hidden="true"><path d="M0 8h88M132 8h88" stroke="currentColor" stroke-width="1"/><path d="M110 1l7 7-7 7-7-7z" fill="none" stroke="currentColor"/><path d="M110 5l3 3-3 3-3-3z" fill="currentColor"/><circle cx="96" cy="8" r="1.8" fill="currentColor"/><circle cx="124" cy="8" r="1.8" fill="currentColor"/></svg>
     <p class="fr">Le Joyau précieux, dans la versification de la prose d'Al-Akhdari</p>
-    <p class="author">Cheikh Ahmadou Bamba Khadimou Rassoul — vers 1 à 75 (pages 3 à 7 de l'édition arabe)</p>
+    <p class="author">Cheikh Ahmadou Bamba Khadimou Rassoul</p>
+    <div class="stats"><span class="stat">Bayts 1–75</span><span class="stat">Pages 3–7</span><span class="stat">Audio wolof · bayts 1–22</span></div>
   </header>
 
   <div class="toolbar" role="toolbar" aria-label="Options de lecture">
     <button type="button" id="toggle-fr" aria-pressed="true">Traduction française</button>
-    <label class="size" for="ar-size">Taille de l'arabe <input type="range" id="ar-size" min="1.3" max="2.4" step="0.05" value="1.75"></label>
+    <label class="size" for="ar-size"><span>Taille de l'arabe</span><span aria-hidden="true" style="display:inline;font-family:var(--f-ar)">أ</span> <input type="range" id="ar-size" min="1.3" max="2.4" step="0.05" value="1.75"></label>
     <button type="button" id="toggle-sync" aria-pressed="false">Caler l'audio</button>
   </div>
 
   <section class="export" aria-label="Calage de l'audio">
     <p><strong>Mode calage.</strong> Lance l'audio en bas. Dès que le lecteur commence un bayt en arabe, touche « Début ici » sur ce bayt. Le passage d'un bayt va de son début jusqu'au début du bayt suivant (lecture + traduction + explication en wolof). Tes repères sont gardés dans ce navigateur.</p>
-    <p>Quand tu as fini, copie les repères et envoie-les moi : je les intègre dans la page pour tout le monde.</p>
+    <p>Les boutons −0,5 s et +0,5 s décalent le début d’un bayt et le rejouent aussitôt. Quand tu as fini, copie les repères et envoie-les moi : je les intègre dans la page pour tout le monde.</p>
     <textarea id="times-out" readonly aria-label="Repères audio"></textarea>
     <div class="row">
       <button type="button" id="copy-times">Copier les repères</button>
@@ -157,7 +222,7 @@ footer{margin-top:48px;text-align:center;color:var(--muted);font-size:.8rem;disp
       <p>Seigneur ! accorde une issue heureuse à la Communauté de Mouhammad ; Seigneur ! dissipe l'angoisse de la Communauté de Mouhammad ; Seigneur ! accorde Ta clémence à la Communauté de Mouhammad — que la Bénédiction divine et le Salut soient sur lui.</p>
       <p>Nous implorons Ton secours, ô Toi qui secours, et c'est auprès de Toi que nous cherchons assistance. Il n'y a ni moyen ni puissance si ce n'est en Dieu, le Sublime, l'Incommensurable. Dieu nous suffit ; quel bon Garant !</p>
     </div>
-    <button type="button" class="mark" data-n="0">Début ici <span class="t"></span></button>
+    <span class="nudges"><button type="button" class="mark" data-n="0">Début ici <span class="t"></span></button><button type="button" class="nudge" data-n="0" data-d="-0.5">−0,5 s</button><button type="button" class="nudge" data-n="0" data-d="0.5">+0,5 s</button></span>
   </section>
 
   <div id="poem"></div>
@@ -175,11 +240,11 @@ footer{margin-top:48px;text-align:center;color:var(--muted);font-size:.8rem;disp
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path id="play-ico" d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
     </button>
     <div class="pinfo">
-      <span class="now" id="now">Touchez un bayt marqué ▸ pour l'écouter</span>
-      <input type="range" id="seek" min="0" max="0" step="0.1" value="0" aria-label="Position dans l'audio">
+      <span class="now" id="now">Touchez un bayt doré pour l’écouter</span>
+      <input type="range" id="seek" min="0" max="0" step="0.05" value="0" aria-label="Position dans l'audio">
     </div>
     <span class="ptime" id="ptime">0:00</span>
-    <label class="ptime" for="part">Audio <select id="part" class="pbtn small" style="width:auto;border-radius:999px;background:transparent;color:var(--gold)"><option value="0">Partie 1</option><option value="1">Partie 2</option></select></label>
+    <label class="ptime part" for="part">Audio <select id="part"><option value="0">Partie 1</option><option value="1">Partie 2</option></select></label>
     <div class="sync-tools">
       <button type="button" class="pbtn small" id="back5">−5 s</button>
       <button type="button" class="pbtn small" id="fwd5">+5 s</button>
@@ -281,7 +346,7 @@ V.forEach(([s1, s2, fr], i) => {
   const n = i + 1;
   if (PAGES[n]) {
     const m = document.createElement("div");
-    m.className = "page-mark"; m.textContent = "Page " + PAGES[n];
+    m.className = "page-mark"; m.innerHTML = `Page ${PAGES[n]} · <span class="ar-n" lang="ar">صفحة ${toAr(PAGES[n])}</span>`;
     poem.appendChild(m);
   }
   if (SECTIONS[n]) {
@@ -294,9 +359,9 @@ V.forEach(([s1, s2, fr], i) => {
   const li = document.createElement("li");
   li.className = "bayt"; li.id = "v" + n; li.dataset.n = n;
   li.innerHTML = `<span class="num" title="Vers ${n}" aria-label="Vers ${n}">${n}</span>
-    <p class="ar-line" lang="ar" style="margin:0"><span class="s1">${s1}</span><span class="s2">${s2}</span></p>
+    <p class="ar-line" lang="ar"><span class="s1">${s1}</span><span class="sep" aria-hidden="true"></span><span class="s2">${s2}</span></p>
     <p class="fr-line" lang="fr">${fr}</p>
-    <button type="button" class="mark" data-n="${n}">Début ici <span class="t"></span></button>`;
+    <span class="nudges"><button type="button" class="mark" data-n="${n}">Début ici <span class="t"></span></button><button type="button" class="nudge" data-n="${n}" data-d="-0.5">−0,5 s</button><button type="button" class="nudge" data-n="${n}" data-d="0.5">+0,5 s</button></span><span class="has-dot" aria-hidden="true"></span><span class="kprog" aria-hidden="true"><i></i></span>`;
   list.appendChild(li);
 });
 
@@ -311,12 +376,12 @@ size.addEventListener("input", e => setSize(e.target.value));
 const FILES = ["diawwharun.mp3", "diawharun2.mp3"];
 // Repères intégrés : bayt -> [n° de fichier, secondes]. 0 = ouverture.
 const BAKED_TIMES = {
-  0:[0,307.27], 1:[0,521.1], 2:[0,569.0], 3:[0,606.97], 4:[0,620.46], 5:[0,651.6], 6:[0,706.53],
-  7:[1,0], 8:[1,24.42], 9:[1,60.83], 10:[1,77.59], 11:[1,270.19], 12:[1,299.33], 13:[1,318.33], 14:[1,356.93],
-  15:[1,409.51], 16:[1,465.77], 17:[1,487.9], 18:[1,527.17], 19:[1,536.06], 20:[1,544.48], 21:[1,564.85], 22:[1,633.22]
+  0:[0,307.28], 1:[0,521.67], 2:[0,569.62], 3:[0,606.96], 4:[0,620.87], 5:[0,650.3], 6:[0,706.62],
+  7:[1,0], 8:[1,24.43], 9:[1,61.5], 10:[1,145.3], 11:[1,270.19], 12:[1,305.3], 13:[1,319.07], 14:[1,356.95],
+  15:[1,410.3], 16:[1,442.5], 17:[1,488.79], 18:[1,527.17], 19:[1,537.0], 20:[1,547.3], 21:[1,626.6], 22:[1,640.85]
 };
 let times = Object.assign({}, BAKED_TIMES);
-try{ const saved = JSON.parse(localStorage.getItem("jn-times3") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
+try{ const saved = JSON.parse(localStorage.getItem("jn-times6") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
 
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play"), playIco = document.getElementById("play-ico");
@@ -325,7 +390,7 @@ const syncBtn = document.getElementById("toggle-sync"), out = document.getElemen
 const label = n => n == 0 ? "Ouverture" : "Bayt " + n;
 const fmt = s => { s = Math.max(0, s|0); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); };
 const els = n => n == 0 ? document.querySelector(".opening") : document.getElementById("v" + n);
-let fileIdx = 0, stopAt = null, current = null, pendingSeek = null;
+let fileIdx = 0, current = null, pendingSeek = null;
 
 function loadFile(i, at, play){
   if (i !== fileIdx){ fileIdx = i; audio.src = FILES[i]; pendingSeek = at || 0; audio.load(); }
@@ -333,8 +398,8 @@ function loadFile(i, at, play){
   if (play) audio.play().catch(()=>{});
 }
 audio.addEventListener("loadedmetadata", () => {
-  seek.max = audio.duration;
   if (pendingSeek != null){ audio.currentTime = pendingSeek; pendingSeek = null; }
+  update();
 });
 function keysIn(f){ return Object.keys(times).map(Number).filter(k => times[k][0] === f).sort((a,b)=>times[a][1]-times[b][1]); }
 function segment(n){
@@ -353,34 +418,67 @@ function refresh(){
   const obj = {}; Object.keys(times).map(Number).sort((a,b)=>a-b).forEach(k => obj[k] = [times[k][0], Math.round(times[k][1]*10)/10]);
   out.value = JSON.stringify(obj);
 }
-function save(){ try{ localStorage.setItem("jn-times3", JSON.stringify(times)); }catch(e){} }
+function save(){ try{ localStorage.setItem("jn-times6", JSON.stringify(times)); }catch(e){} }
 function setActive(n){
   if (current === n) return;
   if (current != null && els(current)) els(current).classList.remove("active");
   current = n;
   if (n != null && els(n)) els(n).classList.add("active");
-  nowEl.textContent = n != null ? label(n) + " · partie " + (fileIdx+1) : "Partie " + (fileIdx+1) + " · touchez un bayt marqué ▸";
+  nowEl.textContent = n != null ? label(n) + " · partie " + (fileIdx+1) : "Partie " + (fileIdx+1) + " · touchez un bayt doré pour l’écouter";
 }
+let seg = null; // passage du bayt en cours : {start, end}
+const inSync = () => document.body.classList.contains("sync");
+const segEnd = () => (seg && seg.end != null) ? seg.end : (audio.duration || 0);
 function playVerse(n){
-  const seg = segment(n); if (!seg) return;
-  stopAt = document.body.classList.contains("sync") ? null : seg.end;
-  current = null; loadFile(seg.file, seg.start, true); setActive(+n);
+  const s = segment(n); if (!s) return;
+  seg = { start: s.start, end: s.end };
+  current = null; loadFile(s.file, s.start, true); setActive(+n); update();
 }
 function whichAt(t){ let best = null; for (const k of keysIn(fileIdx)) if (times[k][1] <= t + 0.05) best = k; return best; }
-
-playBtn.addEventListener("click", () => { if (audio.paused){ stopAt = null; audio.play().catch(()=>{}); } else audio.pause(); });
-audio.addEventListener("play", () => { playIco.setAttribute("d","M4 2.5h3v11H4zM9 2.5h3v11H9z"); playBtn.setAttribute("aria-label","Pause"); });
-audio.addEventListener("pause", () => { playIco.setAttribute("d","M4 2.5v11l9-5.5z"); playBtn.setAttribute("aria-label","Lecture"); });
-audio.addEventListener("ended", () => { if (stopAt == null && fileIdx < FILES.length - 1) loadFile(fileIdx + 1, 0, true); });
-audio.addEventListener("timeupdate", () => {
+const fmtT = s => { s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); };
+function update(){
   const t = audio.currentTime;
-  if (stopAt != null && t >= stopAt){ audio.pause(); audio.currentTime = stopAt; stopAt = null; }
-  seek.value = t; ptime.textContent = fmt(t) + " / " + fmt(audio.duration || 0);
+  if (seg && !inSync()){
+    const end = segEnd();
+    if (seg.end != null && t >= seg.end && !audio.paused){ audio.pause(); audio.currentTime = seg.end; }
+    const len = Math.max(0, end - seg.start), rel = Math.min(len, Math.max(0, (seg.end != null ? Math.min(t, seg.end) : t) - seg.start));
+    seek.max = len || 0; seek.value = rel;
+    ptime.textContent = fmtT(rel) + " / " + fmtT(len);
+    const pr = len ? rel / len : 0;
+    seek.style.setProperty("--fill", (pr*100).toFixed(2) + "%");
+    if (current != null && els(current)) els(current).style.setProperty("--p", pr.toFixed(4));
+  } else {
+    seek.max = audio.duration || 0; seek.value = t;
+    ptime.textContent = fmtT(t) + " / " + fmtT(audio.duration || 0);
+    seek.style.setProperty("--fill", (audio.duration ? t / audio.duration * 100 : 0).toFixed(2) + "%");
+  }
   const k = whichAt(t); if (k != null) setActive(k);
+}
+let raf = null;
+function loop(){ update(); raf = audio.paused ? null : requestAnimationFrame(loop); }
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused){
+    if (seg && !inSync() && audio.currentTime >= segEnd() - 0.05) audio.currentTime = seg.start;
+    audio.play().catch(()=>{});
+  } else audio.pause();
 });
-seek.addEventListener("input", () => { audio.currentTime = +seek.value; stopAt = null; });
+audio.addEventListener("play", () => { playIco.setAttribute("d","M4 2.5h3v11H4zM9 2.5h3v11H9z"); playBtn.setAttribute("aria-label","Pause"); if (!raf) loop(); });
+audio.addEventListener("pause", () => { playIco.setAttribute("d","M4 2.5v11l9-5.5z"); playBtn.setAttribute("aria-label","Lecture"); update(); });
+audio.addEventListener("ended", () => { if (!seg && fileIdx < FILES.length - 1) loadFile(fileIdx + 1, 0, true); });
+audio.addEventListener("timeupdate", update);
+audio.addEventListener("durationchange", update);
+seek.addEventListener("input", () => { audio.currentTime = (seg && !inSync()) ? seg.start + (+seek.value) : +seek.value; update(); });
 
 document.addEventListener("click", e => {
+  const nud = e.target.closest(".nudge");
+  if (nud){
+    e.stopPropagation();
+    const n = nud.dataset.n; if (!times[n]) return;
+    times[n] = [times[n][0], Math.max(0, times[n][1] + parseFloat(nud.dataset.d))];
+    save(); refresh(); playVerse(n);
+    return;
+  }
   const mark = e.target.closest(".mark");
   if (mark){
     e.stopPropagation();
@@ -394,9 +492,9 @@ document.addEventListener("click", e => {
 syncBtn.addEventListener("click", () => {
   const on = !document.body.classList.contains("sync");
   document.body.classList.toggle("sync", on); syncBtn.setAttribute("aria-pressed", on);
-  if (on) stopAt = null;
+  seg = null; update();
 });
-document.getElementById("part").addEventListener("change", e => { stopAt = null; current = null; loadFile(+e.target.value, 0, false); setActive(null); });
+document.getElementById("part").addEventListener("change", e => { seg = null; current = null; loadFile(+e.target.value, 0, false); setActive(null); });
 audio.addEventListener("loadstart", () => { document.getElementById("part").value = fileIdx; });
 document.getElementById("back5").addEventListener("click", () => audio.currentTime = Math.max(0, audio.currentTime - 5));
 document.getElementById("fwd5").addEventListener("click", () => audio.currentTime += 5);
@@ -407,14 +505,15 @@ document.getElementById("copy-times").addEventListener("click", () => {
   navigator.clipboard.writeText(out.value).then(() => msg.textContent = "Copié.", () => { out.select(); msg.textContent = "Sélectionné : copie avec ton clavier."; });
 });
 document.getElementById("clear-times").addEventListener("click", () => {
-  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times3"); }catch(e){} refresh();
+  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times6"); }catch(e){} refresh();
 });
 refresh();
 
 try{
   const f = localStorage.getItem("jn-fr"); if (f === "0") setFr(false);
   const s = localStorage.getItem("jn-size"); if (s) { size.value = s; setSize(s); }
+  else if (matchMedia("(max-width:620px)").matches) size.value = 1.38;
 }catch(e){}
 </script>
-</body>
-</html>
+
+</body></html>
