@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Al-Jawhar an-Nafîs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout : une colonne de lecture centrée ; chaque bayt = deux hémistiches côte à côte (empilés sur mobile), traduction dessous. Halo doré venant du bas sur brun profond. */
+:root{
+  --bg:#1c140e; --bg-2:#241a12; --surface:#2a1f16; --line:#4a3826;
+  --gold:#e9c98e; --gold-deep:#c9a463; --ink:#f3e8d6; --muted:#b9a68a; --halo:rgba(233,201,142,.22);
+  --f-ar:"Amiri","Scheherazade New","Noto Naskh Arabic","Traditional Arabic",serif;
+  --f-display:"Marcellus","Cinzel",Georgia,serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --ar-size:1.75rem;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#f6efe2; --bg-2:#efe4d0; --surface:#fbf6ec; --line:#dcc9a6;
+  --gold:#8a6424; --gold-deep:#a47a33; --ink:#2b1f14; --muted:#6f5c44; --halo:rgba(201,164,99,.28);
+  color-scheme:light;}}
+:root[data-theme="light"]{
+  --bg:#f6efe2; --bg-2:#efe4d0; --surface:#fbf6ec; --line:#dcc9a6;
+  --gold:#8a6424; --gold-deep:#a47a33; --ink:#2b1f14; --muted:#6f5c44; --halo:rgba(201,164,99,.28);
+  color-scheme:light;}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  background-image:radial-gradient(120% 60% at 50% 105%,var(--halo),transparent 70%);background-attachment:fixed;}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 80px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+
+header.hero{text-align:center;padding-block:28px 36px;display:grid;gap:10px;justify-items:center}
+.eyebrow{font-family:var(--f-display);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--muted)}
+.hero h1{font-family:var(--f-ar);font-weight:700;font-size:clamp(2.4rem,7vw,3.6rem);line-height:1.5;color:var(--gold);margin:0;direction:rtl}
+.hero .sub-ar{font-family:var(--f-ar);font-size:clamp(1.3rem,3.6vw,1.7rem);color:var(--ink);margin:0;direction:rtl}
+.hero .fr{font-family:var(--f-display);font-size:clamp(1.1rem,3vw,1.35rem);margin:6px 0 0;color:var(--ink);text-wrap:balance}
+.hero .author{font-size:.95rem;color:var(--muted);font-style:italic;margin:0;max-width:52ch}
+.ornament{width:180px;max-width:60%;height:14px;color:var(--gold-deep)}
+
+.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-block:1px solid var(--line);
+  padding-block:10px;margin-block:8px 28px;font-size:.85rem;color:var(--muted)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.toolbar button{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.toolbar button[aria-pressed="true"]{border-color:var(--gold-deep);color:var(--gold)}
+.toolbar button:focus-visible,.toolbar input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.size{display:flex;align-items:center;gap:8px}
+.size input{accent-color:var(--gold-deep);width:110px}
+
+.opening{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px clamp(18px,4vw,36px);display:grid;gap:18px;margin-bottom:44px}
+.opening .ar{font-family:var(--f-ar);direction:rtl;text-align:justify;font-size:calc(var(--ar-size)*.82);line-height:2.1;margin:0}
+.opening .fr-block{font-size:.95rem;color:var(--muted);margin:0;display:grid;gap:6px}
+.opening .fr-block p{margin:0}
+
+.section-title{display:grid;justify-items:center;gap:4px;margin:56px 0 26px;text-align:center}
+.section-title .ar{font-family:var(--f-ar);font-weight:700;font-size:calc(var(--ar-size)*1.02);color:var(--gold);direction:rtl;margin:0}
+.section-title .fr{font-family:var(--f-display);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+
+.verses{list-style:none;margin:0;padding:0;display:grid}
+.bayt{display:grid;grid-template-columns:44px 1fr;gap:4px 16px;padding-block:22px;border-bottom:1px solid var(--line)}
+.num{grid-row:1/3;align-self:start;margin-top:.55rem;width:40px;height:40px;display:grid;place-items:center;
+  font-family:var(--f-display);font-size:.82rem;color:var(--gold);font-variant-numeric:tabular-nums;position:relative}
+.num::before{content:"";position:absolute;inset:4px;border:1px solid var(--gold-deep);transform:rotate(45deg);opacity:.7}
+.ar-line{direction:rtl;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(18px,5vw,48px);font-family:var(--f-ar);font-size:var(--ar-size);line-height:2;min-width:0}
+.ar-line span{min-width:0}
+.ar-line .s1{text-align:right}
+.ar-line .s2{text-align:left}
+.fr-line{margin:4px 0 0;color:var(--muted);font-size:1rem;max-width:62ch;min-width:0}
+.hide-fr .fr-line{display:none}
+.page-mark{display:flex;align-items:center;gap:12px;margin:30px 0 4px;color:var(--muted);font-family:var(--f-display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
+.page-mark::before,.page-mark::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.continue{text-align:center;margin-top:36px;color:var(--muted);font-style:italic;font-size:.9rem}
+footer{margin-top:48px;text-align:center;color:var(--muted);font-size:.8rem;display:grid;gap:4px}
+
+/* Audio */
+.bayt,.opening{cursor:pointer;transition:background-color .2s}
+.bayt{border-radius:4px;padding-inline:8px;margin-inline:-8px}
+.bayt.no-audio,.opening.no-audio{cursor:default}
+.bayt:hover:not(.no-audio){background:color-mix(in srgb,var(--gold) 6%,transparent)}
+.bayt.active{background:color-mix(in srgb,var(--gold) 13%,transparent)}
+.bayt.active .num::before{opacity:1;background:color-mix(in srgb,var(--gold) 20%,transparent)}
+.opening.active{border-color:var(--gold-deep)}
+.num.has-audio::after{content:"";position:absolute;right:-6px;bottom:-2px;width:0;height:0;border-left:7px solid var(--gold);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.opening:not(.no-audio)::before{content:"Écouter l'ouverture";font-family:var(--f-display);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.mark{display:none;justify-self:start;font:inherit;font-size:.8rem;color:var(--bg);background:var(--gold-deep);border:0;border-radius:999px;padding:5px 12px;margin-top:6px;cursor:pointer}
+.sync .mark{display:inline-flex;gap:6px;align-items:center}
+.mark .t{font-variant-numeric:tabular-nums;opacity:.8}
+.bayt .mark{grid-column:2}
+.player{position:fixed;left:0;right:0;bottom:0;z-index:8;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.player-in{max-width:860px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:10px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pbtn{font:inherit;width:42px;height:42px;border-radius:50%;border:1px solid var(--gold-deep);background:transparent;color:var(--gold);display:grid;place-items:center;cursor:pointer;flex:none}
+.pbtn.small{width:auto;height:32px;border-radius:999px;padding:0 10px;font-size:.78rem}
+.pbtn:focus-visible,.mark:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.pinfo{flex:1;min-width:160px;display:grid;gap:4px}
+.pinfo .now{font-size:.85rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pinfo input{width:100%;accent-color:var(--gold-deep)}
+.ptime{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.sync-tools{display:none;gap:8px;flex-wrap:wrap}
+.sync .sync-tools{display:flex}
+.export{display:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;margin-bottom:30px;gap:10px}
+.sync .export{display:grid}
+.export p{margin:0;font-size:.9rem;color:var(--muted)}
+.export textarea{width:100%;min-height:90px;font:12px/1.4 ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:8px}
+.export .row{display:flex;gap:8px;flex-wrap:wrap}
+.export button{font:inherit;font-size:.85rem;color:var(--ink);background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
+.wrap{padding-bottom:140px}
+
+@media (max-width:620px){
+  .ar-line{grid-template-columns:1fr;row-gap:2px}
+  .ar-line .s1{text-align:right}
+  .ar-line .s2{text-align:left;padding-right:18%}
+  .bayt{grid-template-columns:34px 1fr;gap:4px 10px}
+  .num{width:32px;height:32px;font-size:.74rem}
+}
+@media (prefers-reduced-motion:no-preference){.toolbar button{transition:border-color .2s,color .2s}}
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+  <header class="hero">
+    <span class="eyebrow">Fiqh · Versification de l'Akhdari</span>
+    <svg class="ornament" viewBox="0 0 180 14" aria-hidden="true"><path d="M0 7h70M110 7h70" stroke="currentColor" stroke-width="1"/><path d="M90 1l6 6-6 6-6-6z" fill="none" stroke="currentColor"/><circle cx="78" cy="7" r="1.6" fill="currentColor"/><circle cx="102" cy="7" r="1.6" fill="currentColor"/></svg>
+    <h1>الْجَوْهَرُ النَّفِيسُ</h1>
+    <p class="sub-ar">فِي عَقْدِ نَثْرِ الْأَخْضَرِيِّ الرَّئِيسِ</p>
+    <p class="fr">Le Joyau précieux, dans la versification de la prose d'Al-Akhdari</p>
+    <p class="author">Cheikh Ahmadou Bamba Khadimou Rassoul — vers 1 à 75 (pages 3 à 7 de l'édition arabe)</p>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Options de lecture">
+    <button type="button" id="toggle-fr" aria-pressed="true">Traduction française</button>
+    <label class="size" for="ar-size">Taille de l'arabe <input type="range" id="ar-size" min="1.3" max="2.4" step="0.05" value="1.75"></label>
+    <button type="button" id="toggle-sync" aria-pressed="false">Caler l'audio</button>
+  </div>
+
+  <section class="export" aria-label="Calage de l'audio">
+    <p><strong>Mode calage.</strong> Lance l'audio en bas. Dès que le lecteur commence un bayt en arabe, touche « Début ici » sur ce bayt. Le passage d'un bayt va de son début jusqu'au début du bayt suivant (lecture + traduction + explication en wolof). Tes repères sont gardés dans ce navigateur.</p>
+    <p>Quand tu as fini, copie les repères et envoie-les moi : je les intègre dans la page pour tout le monde.</p>
+    <textarea id="times-out" readonly aria-label="Repères audio"></textarea>
+    <div class="row">
+      <button type="button" id="copy-times">Copier les repères</button>
+      <button type="button" id="clear-times">Effacer mes repères</button>
+      <span id="copy-msg" class="ptime" role="status"></span>
+    </div>
+  </section>
+
+  <section class="opening" aria-label="Ouverture" data-n="0">
+    <p class="ar">بِسْمِ اللهِ الرَّحْمَانِ الرَّحِيمِ، وَصَلَّى اللهُ عَلَى سَيِّدِنَا مُحَمَّدٍ نَبِيِّهِ وَآلِهِ وَصَحْبِهِ وَسَلَّمَ تَسْلِيمًا. اللَّهُمَّ أَصْلِحْ أُمَّةَ مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، اللَّهُمَّ فَرِّجْ عَنْ أُمَّةِ مُحَمَّدٍ، اللَّهُمَّ ارْحَمْ أُمَّةَ مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ. عَوْنَكَ يَا مُعِينُ وَبِكَ نَسْتَعِينُ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ الْعَلِيِّ الْعَظِيمِ. حَسْبُنَا اللهُ وَنِعْمَ الْوَكِيلُ.</p>
+    <div class="fr-block fr-line">
+      <p>Au nom de Dieu, le Clément, le Miséricordieux. Que la Bénédiction de Dieu se répande sur notre Maître Mouhammad, Son Prophète, sur sa famille et sur ses compagnons, et qu'Il leur assure la Paix.</p>
+      <p>Seigneur ! accorde une issue heureuse à la Communauté de Mouhammad ; Seigneur ! dissipe l'angoisse de la Communauté de Mouhammad ; Seigneur ! accorde Ta clémence à la Communauté de Mouhammad — que la Bénédiction divine et le Salut soient sur lui.</p>
+      <p>Nous implorons Ton secours, ô Toi qui secours, et c'est auprès de Toi que nous cherchons assistance. Il n'y a ni moyen ni puissance si ce n'est en Dieu, le Sublime, l'Incommensurable. Dieu nous suffit ; quel bon Garant !</p>
+    </div>
+    <button type="button" class="mark" data-n="0">Début ici <span class="t"></span></button>
+  </section>
+
+  <div id="poem"></div>
+
+  <p class="continue">Audio disponible pour l'ouverture et les bayts 1 à 22. Le vers 75 se poursuit au vers 76 (page 8 de l'édition arabe).</p>
+  <footer>
+    <span>Texte arabe : édition Al-Maktaba al-Mouridiyya · Traduction française : « Jawharu-n-Nafîs, le Joyau précieux »</span>
+    <span>Prototype de lecture — pages 1 à 7 · Audio : lecture et explication en wolof</span>
+  </footer>
+</div>
+
+<div class="player" role="region" aria-label="Lecteur audio">
+  <div class="player-in">
+    <button type="button" class="pbtn" id="play" aria-label="Lecture">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path id="play-ico" d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
+    </button>
+    <div class="pinfo">
+      <span class="now" id="now">Touchez un bayt marqué ▸ pour l'écouter</span>
+      <input type="range" id="seek" min="0" max="0" step="0.1" value="0" aria-label="Position dans l'audio">
+    </div>
+    <span class="ptime" id="ptime">0:00</span>
+    <label class="ptime" for="part">Audio <select id="part" class="pbtn small" style="width:auto;border-radius:999px;background:transparent;color:var(--gold)"><option value="0">Partie 1</option><option value="1">Partie 2</option></select></label>
+    <div class="sync-tools">
+      <button type="button" class="pbtn small" id="back5">−5 s</button>
+      <button type="button" class="pbtn small" id="fwd5">+5 s</button>
+      <button type="button" class="pbtn small" id="rate">Vitesse ×1</button>
+    </div>
+  </div>
+</div>
+<audio id="audio" src="diawwharun.mp3" preload="metadata"></audio>
+
+<script>
+const SECTIONS = {
+  1: { ar: "مُقَدِّمَةٌ", fr: "Introduction" },
+  9: { ar: "أَوَّلُ مَا يَجِبُ عَلَى الْمُكَلَّفِ", fr: "Le premier devoir du croyant responsable" }
+};
+const PAGES = { 1: 3, 9: 4, 25: 5, 42: 6, 59: 7 };
+
+const V = [
+["قَالَ الْفَقِيرُ ابْنُ حَبِيبٍ أَحْمَدُ","رَبَّ الْوَرَى حَمْدًا يَدُومُ أَحْمَدُ","Ahmad, l'indigent spirituel, fils de Habîb, dit : je rends grâce au Maître des créatures, d'une gratitude qui perdure."],
+["مُصَلِّيًا عَلَى الْفَقِيهِ الْهَادِي","مُحَمَّدٍ وَكُلِّ ذِي اجْتِهَادِ","J'adresse mes prières au plus compétent des juristes, le Guide, Mouhammad, et à tout persévérant."],
+["هَذَا وَإِنَّنِي صَرَفْتُ هَمِّي","لِعَقْدِ نَثْرِ الْأَخْضَرِيِّ الْقَرْمِ","Sachez qu'à présent je me fixe comme but de versifier l'œuvre en prose d'Al-Akhdari, le Grand Maître,"],
+["لِكَيْ يَكُونَ تُحْفَةً لِكُلِّ مَنْ","أَرَادَ حِفْظَهُ مِنَ ابْنَاءِ الزَّمَنْ","afin qu'elle soit plus accessible à quiconque voudrait la mémoriser parmi les jeunes de l'époque."],
+["مُعْتَذِرًا لِكُلِّ حَبْرٍ ذِي أَدَبْ","خَبِيرِ نَحْوٍ وَعَرُوضٍ وَأَدَبْ","Je m'incline très humblement devant tout érudit scrupuleux, spécialiste de grammaire, de prosodie et de lettres."],
+["وَاللهَ رَبِّي أَسْأَلُ الْقَبُولَا","وَالْعَوْنَ وَالتَّوْفِيقَ وَالْوُصُولَا","Je sollicite de Dieu, mon Seigneur, pour ce travail, l'agrément, l'assistance, la réussite et la conjonction spirituelle."],
+["وَأَنْ يَكُونَ رَاحَةَ الصِّغَارِ","وَمَنْ لَهُ احْتَاجَ مِنَ الْكِبَارِ","Et qu'il soit plus pratique pour les adolescents et pour l'adulte qui en éprouve le besoin."],
+["سَمَّيْتُهُ بِـ(الْجَوْهَرِ النَّفِيسِ","فِي عَقْدِ نَثْرِ الْأَخْضَرِيْ الرَّئِيسِ)","Je l'ai intitulé : « Le Joyau précieux, dans la versification de la prose d'Al-Akhdari le Chef »."],
+["أَوَّلُ مَا أَوْجَبَهُ الرَّحْمَانُ","قَطْعًا عَلَى الْمُكَلَّفِ الْإِيمَانُ","Le premier des devoirs que le Miséricordieux assigne infailliblement à tout individu responsable de ses actes (mukallaf) est la Foi."],
+["ثُمَّتَ مَعْرِفَةُ مَا يُصْلِحُ بِهْ","فَرَائِضَ الْعَيْنِ جَمِيعًا فَانْتَبِهْ","Ensuite, acquérir la connaissance qui lui permet de s'acquitter convenablement de toutes les obligations individuelles (farâ'id al-'ayn) ; sois donc perspicace."],
+["كَحُكْمِ صَوْمٍ وَطَهَارَةٍ صَلَاةْ","فَرْضًا وَنَفْلًا وَكَحَجٍّ وَزَكَاةْ","Telles que les règles du jeûne, de la purification, de la prière obligatoire et surérogatoire, du pèlerinage et de l'aumône légale."],
+["ثُمَّ عَلَيْهِ أَنْ يُحَافِظَ عَلَى","حُدُودِ رَبِّ الْعَرْشِ جَلَّ وَعَلَا","Ensuite il lui incombe de respecter strictement les limites de la Loi du Maître du Trône, le Très-Haut, le Très-Grand,"],
+["وَعِنْدَ أَمْرِهِ وَنَهْيِهِ يَقِفْ","وَأَنْ يَتُوبَ كُلَّ حِينٍ مُعْتَرِفْ","de s'en tenir à Ses prescriptions et proscriptions, et de se repentir en tout temps en reconnaissant ses fautes"],
+["لِرَبِّهِ سُبْحَانَهُ مِنْ قَبْلِ أَنْ","يَكُونَ سَاخِطًا عَلَيْهِ فِي الزَّمَنْ","envers son Seigneur — gloire à Lui ! — avant que Son courroux ne s'abatte sur lui un instant."],
+["وَمِنْ شُرُوطِهَا نَدَامَةٌ عَلَى","مَا فَاتَهُ مِنَ الْمَعَاصِي مُسْجَلَا","Parmi les conditions de ce repentir : regretter ses fautes passées, quelles qu'elles soient,"],
+["وَنِيَّةٌ فِيمَا بَقَى مِنَ الْعُمُرْ","عَدَمَ عَوْدِهِ لِكُلِّ مَا يَضُرْ","et prendre la résolution, pour le reste de sa vie, de ne jamais revenir à ce qui est préjudiciable."],
+["وَأَنْ يَكُونَ تَارِكَ الْعِصْيَانِ","إِنْ كَانَ عَاصِيًا بِلَا تَوَانِ","Il doit aussi cesser de pécher, s'il est en faute, et ce sans délai."],
+["وَلَا لَهُ تَأْخِيرٌ اوْ تَصَبُّرُ","لِتَوْبَةٍ وَلَا يَقُولُ أَصْبِرُ","Il ne doit ni retarder ni remettre son repentir, ni dire : « J'attends"],
+["حَتَّى هَدَانِي صَاحِبُ الْغُفْرَانِ","فَإِنَّ ذَا عَلَامَةُ الْخِذْلَانِ","que Celui qui pardonne me mette sur la bonne voie » ; c'est là un signe d'abandon (khidhlân) de la part de Dieu,"],
+["مَعَ الشَّقَاوَةِ وَرَيْنِ الْقَلْبِ","إِنِّي أَعُوذُ مِنْهُمَا بِرَبِّي","de damnation et de ternissure du cœur ; je cherche refuge auprès de mon Seigneur contre ces deux malheurs."],
+["وَهَكَذَا رَدُّ الْمَظَالِمِ جَمِيعْ","يُعَدُّ مِنْ شُرُوطِهَا عِنْدَ الْمُطِيعْ","De même, réparer l'ensemble des injustices commises compte parmi les conditions du repentir, selon l'homme obéissant,"],
+["لِأَنَّهُ فَرْضٌ فَمَنْ تَرَكَهُ","مُخَفِّفًا فَقَدْ عَصَى مَلِكَهُ","car c'est une obligation divine : quiconque y renonce par négligence a désobéi à son Maître."],
+["ثُمَّ الْمَظَالِمُ أَتَتْ قِسْمَيْنِ","أَمْوَالًا اعْرَاضًا بِغَيْرِ مَيْنِ","Les torts causés sont de deux sortes, sans erreur possible : sur les biens et sur l'honneur."],
+["فَلْيَرْدُدِ الْأَمْوَالَ لِلْأَرْبَابِ","إِنْ وُجِدُوا الدَّهْرَ بِلَا ارْتِيَابِ","Il doit restituer les biens à leurs propriétaires s'ils sont encore trouvables, sans tricherie."],
+["ثُمَّ إِذَا لَمْ يُوجَدُوا فَلْيَرْدُدِ","لِوَارِثِيهِمُ بِلَا تَرَدُّدِ","S'ils sont introuvables, il les rend à leurs héritiers, sans hésitation aucune."],
+["ثُمَّ إِذَا لَمْ يُوجَدُوا تَصَدَّقَا","عَنْهُمْ بِهَا كَذَا حَكَى مَنْ حَقَّقَا","À défaut d'héritiers, il donne ces biens en aumône en leur nom ; c'est ce qu'a rapporté celui qui a vérifié."],
+["وَيَسْتَحِلُّ كُلَّ عِرْضٍ أَكَلَا","بِغِيبَةٍ أَوْ قَذْفٍ اوْ شَتْمٍ جَلَا","Puis il doit demander décharge pour chaque atteinte à l'honneur d'autrui, par médisance, diffamation ou injure manifeste,"],
+["إِنْ كَانَ حَاضِرًا، وَأَمَّا إِنْ فُقِدْ","فَلْيُكْثِرَنْ خَيْرًا لَعَلَّهُ يَجِدْ","si la victime est présente ; si elle est absente, il doit multiplier ses bonnes œuvres afin d'avoir"],
+["شَيْئًا يُؤَدِّي حَقَّ كُلِّهِمْ بِهِ","مُسْتَغْفِرًا وَلْيَرْجُ عَفْوَ رَبِّهِ","de quoi acquitter le droit de chacune d'elles, en demandant pardon et en espérant la grâce de son Seigneur."],
+["وَحِفْظُهُ اللِّسَانَ مِنْ فَحْشَاءِ","وَمِنْ قَبِيحِ الْقَوْلِ وَالْمِرَاءِ","Il doit préserver sa langue de l'obscénité, des paroles impudiques et de la polémique."],
+["حَقِيقَةُ الْقَوْلِ الْقَبِيحِ كُلُّ مَا","تَكُونُ مِنْهُ ذَا حَيَاءٍ فَاعْلَمَا","La parole impudique, c'est tout propos dont tu aurais honte ; sache-le."],
+["وَجَوَّزُوا تَصْرِيحَهُ عِنْدَ الْبَلِيدْ","إِنْ كَانَ لَا يَفْهَمُ تَلْوِيحًا يُفِيدْ","Il est toléré de parler explicitement au lent d'esprit, s'il ne saisit pas l'allusion qui ferait comprendre."],
+["حَقِيقَةُ الْمِرَاءِ عِنْدَ مَنْ دَرَى","جُحُودُ حَقٍّ بَعْدَ مَا قَدْ ظَهَرَا","La polémique, pour celui qui sait, consiste à nier la vérité après qu'elle a été établie,"],
+["وَدَفْعُهُ بِبَاطِلٍ وَبَاسِ","لِكُرْهِ خَفْضِ الْجَاهِ عِنْدَ النَّاسِ","et à la repousser par le faux et l'hostilité, par crainte d'être rabaissé aux yeux des gens."],
+["وَمِنْ إِهَانَةٍ أَوِ انْتِهَارِ","لِمُسْلِمٍ أَوْ سَبِّهِ بِالْعَارِ","Il ne doit pas humilier ni rudoyer un musulman, ni l'injurier pour le couvrir de honte."],
+["وَمِثْلُ ذِي تَخْوِيفُهُ تَخْوِيفَا","فِي غَيْرِ حَقِّ الشَّرْعِ لَا تَحِيفَا","De même, il ne doit pas l'effrayer, sauf pour un droit que la Loi reconnaît ; ne transgresse pas."],
+["لَكِنَّهُ فِي الْحَدِّ وَالتَّعْزِيرِ","مُجَوَّزٌ عِنْدَ فُحُولِ الْخَيْرِ","Mais en matière de peine légale et de correction, cela est permis selon les maîtres éminents."],
+["وَهَكَذَا الْيَمِينُ بِالطَّلَاقِ","مُحَرَّمٌ وَلَيْسَ بِاتِّفَاقِ","De même, jurer « par la répudiation » est interdit, bien que cet avis ne fasse pas l'unanimité,"],
+["لِخَبَرِ النَّهْيِ عَنِ الْيَمِينِ","بِالْعِتْقِ وَالطَّلَاقِ فِي التَّبْيِينِ","en vertu du hadith qui interdit, de façon explicite, le serment par l'affranchissement et par la répudiation."],
+["وَمَنْ بِهَا اعْتَادَ عَلَى التَّرْتِيبِ","فَإِنَّهُ يَكُونُ ذَا تَأْدِيبِ","Celui qui en a pris l'habitude doit subir une peine correctionnelle,"],
+["إِذْ لَيْسَ يَحْلِفُ بِكَالطَّلَاقِ","وَالْعِتْقِ عَادَةً سِوَى الْفُسَّاقِ","car seuls les pervers jurent habituellement par la répudiation ou l'affranchissement."],
+["وَحِفْظُهُ مِنَ الْحَرَامِ بَصَرَهْ","لَا يَنْظُرَنْ مَا لَمْ يَجُزْ أَنْ يَنْظُرَهْ","Il doit préserver son regard de l'interdit : qu'il ne regarde pas ce qu'il n'est pas permis de voir,"],
+["كَنَظَرٍ بِنَظْرَةٍ لِلْمُسْلِمِ","تُؤْذِيهِ لَا لِفَاسِقٍ أَوْ مُجْرِمِ","comme un regard qui blesse un musulman — mais non celui porté sur le pervers ou le criminel."],
+["بَلْ وَاجِبٌ عَلَيْهِ فِيمَا شُرِعَا","هِجْرَانُهُ نَصِيحَةً لِيَرْجِعَا","Au contraire, la Loi lui impose de s'éloigner de ce dernier, par conseil, pour l'aider à revenir."],
+["وَمَنَعُوا النَّظَرَ لِلنِّسَاءِ","الْأَجْنَبِيَّاتِ وَكَالْحَسْنَاءِ","Il est interdit de regarder les femmes avec qui l'on n'a aucun lien sacré, ainsi que toute beauté"],
+["مِنْ كُلِّ صُورَةٍ عَلَى الْتِذَاذِ","كَأَمْرَدِ الرِّجَالِ فَاحْذَرْ هَذِي","de quelque forme que ce soit, dans le but d'en jouir, comme le jeune homme imberbe ; garde-toi de cela !"],
+["وَمِنْهُ نَظْرَةٌ عَلَى احْتِقَارِ","كَذَا لِتَخْوِيفٍ أَوِ انْتِهَارِ","Est aussi interdit le regard de mépris, de même que celui de menace ou de réprimande."],
+["وَيَضْمَنُ الْعَائِنُ مَا قَدْ هَلَكَا","بِعَيْنِهِ كَمَا الرَّئِيسُ قَدْ حَكَى","Celui dont l'œil est maléfique répond de ce qui a péri par son regard, comme l'a rapporté le Chef."],
+["وَيُسْجَنُ الْمِعْيَانُ حَيْثُ اشْتَهَرَا","بِالضُّرِّ فِي مَنْزِلِهِ عِ الْخَبَرَا","Celui qui est connu pour son œil nuisible est assigné à résidence ; retiens cette information."],
+["وَحِفْظُهُ الْجَوَارِحَ الْبَطْنُ لِسَانْ","فَرْجٌ وَرِجْلَانِ وَعَيْنَانِ يَدَانْ","Il doit préserver ses membres : le ventre, la langue, le sexe, les jambes, les yeux et les mains ;"],
+["سَابِعُهَا الْأُذْنَانِ مَنْ لَهَا رَعَى","عَنِ الْمَعَاصِي حَازَ قَصْدًا أَجْمَعَا","le septième, ce sont les oreilles. Celui qui les garde de la désobéissance atteint pleinement son but,"],
+["إِذْ كُلُّ عُضْوٍ صَاحِ مِنْهَا قَابَلَتْ","بَابًا مِنَ النِّيرَانِ فِيمَا قَدْ ثَبَتْ","car chacun de ces membres, mon ami, fait face à l'une des portes de l'Enfer, selon ce qui est établi."],
+["وَكُلُّ مَنْ حَفِظَهَا لَا يَدْخُلُ","بَابًا مِنَ الْبِيبَانِ فِيمَا يُنْقَلُ","Quiconque les préserve n'entrera par aucune de ces portes, d'après ce qui est rapporté."],
+["وَكُلُّ عُضْوٍ قَدْ عَصَيْتَ أَبَدَا","بِهَا، بِهَا تَدْخُلُ بَابَهَا غَدَا","Et le membre par lequel tu as désobéi, c'est par sa porte que tu entreras demain."],
+["وَأَنْ يُحِبَّ لِلْإِلَهِ ذِي الْأَنَامْ","شَخْصًا وَيُبْغِضَ لَهُ لَا لِلْحُطَامْ","Il doit aimer une personne pour Dieu, Seigneur des créatures, et ne la détester que pour Lui, non pour un bien de ce monde."],
+["وَأَحْبِبِ الْمُؤْمِنَ لِلْإِيمَانِ","وَلْتُبْغِضِ الْكَافِرَ لِلْكُفْرَانِ","Aime le croyant pour sa foi et réprouve le mécréant pour son infidélité,"],
+["وَلَوْ أَتَى إِلَيْكَ بِالْجِنَايَهْ","ذَاكَ، وَذَا بِالْمَالِ ذِي الْكِفَايَهْ","même si le premier t'a offensé et que le second t'a comblé de richesses."],
+["وَأَنْ يَكُونَ آمِرًا بِالرُّشْدِ","وَنَاهِيًا لِنُصْحَةٍ عَنْ ضِدِّ","Il doit recommander le bien et interdire son contraire, par pur souci de conseil."],
+["لَكِنَّهُ لَهُ ثَلَاثَةُ شُرُوطْ","ذَكَرَهَا فِي الشَّرْحِ شَيْخُنَا الْمُحِيطْ","Mais ce devoir a trois conditions, citées dans le commentaire de notre Maître, qui embrasse la matière ;"],
+["عَنَيْتُ فِي الْجَوَازِ وَالْوُجُوبِ","فَهَاكَ عَدَّهَا عَلَى التَّرْتِيبِ","je parle de ce qui le rend permis et obligatoire. Voici ces conditions dans l'ordre :"],
+["أَيْ أَنْ يَكُونَ عَالِمًا بِالْمُنْكَرِ","وَلَيْسَ مُفْضِيًا لِشَرٍّ أَكْبَرِ","connaître ce qui est blâmable, et que son intervention ne conduise pas à un mal plus grand ;"],
+["وَأَنْ يَكُونَ قَادِرًا ذُو الْأَمْرِ","عَلَى الْإِزَالَةِ بِغَيْرِ نُكْرِ","enfin, que celui qui ordonne soit en mesure de faire cesser le mal, sans conteste."],
+["وَشَرَطُوا إِذْنَ إِمَامٍ فِيهِ","مَعَ الْعَدَالَةِ بِلَا تَمْوِيهِ","Certains exigent aussi l'autorisation de l'autorité religieuse et la probité morale, sans artifice."],
+["وَقِيلَ إِنَّ ذَيْنِ لَمْ يَكُونَا","شَرْطَيْنِ فِي الْأَمْرِ دَعِ التَّخْمِينَا","D'autres disent que ces deux-là ne sont pas des conditions pour commander le bien ; cesse de conjecturer."],
+["وَجَاءَ أَيْضًا شَرْطُ كَوْنِ الْمُنْكَرِ","فِي ظَاهِرٍ مِنْ دُونِ تَجْسِيسٍ دُرِي","Il est aussi requis que le blâmable soit apparent, connu sans espionnage,"],
+["وَلَا اسْتِرَاقِ السَّمْعِ وَاسْتِنْشَاقِ","رَائِحَةٍ كَفِعْلِ ذِي النِّفَاقِ","ni écoute furtive, ni odeur flairée, comme le ferait un hypocrite."],
+["وَلَمْ يَجُزْ بَحْثٌ عَنِ الَّذِي اكْتَتَمْ","فِي ثَوْبِهِ أَوْ فِي دُكَانِهِ نَعَمْ","Il n'est pas permis de fouiller pour découvrir ce qu'une personne cache dans ses habits ou dans sa boutique,"],
+["أَوْ فِي يَدَيْهِ أَوْ بِدَارِهِ مَعَا","بَلْ كُلُّ ذَا كَانَ حَرَامًا مُنِعَا","ni dans ses mains ou dans sa maison ; tout cela est illicite et interdit."],
+["وَاعْلَمْ بِأَنَّ الْأَمْرَ وَالنَّهْيَ جَلَا","بَيْنَهُمَا تَلَازُمٌ تَأَمَّلَا","Sache qu'entre ordonner et interdire existe un lien évident ; médite-le."],
+["فَمَنْ نَهَى عَنْ أَيِّ شَيْءٍ قَدْ جَرَى","فَإِنَّهُ بِعَكْسِهِ قَدْ أَمَرَا","Quiconque interdit une chose ordonne par là même son contraire."],
+["وَيَحْرُمُ الْكِبْرُ عَلَيْهِ وَالرِّيَا","وَكَذِبٌ نَمِيمَةٌ فَلْتَدْرِيَا","Lui sont interdits l'orgueil, l'ostentation, le mensonge et la calomnie ; sache-le bien."],
+["حَقِيقَةُ الْكِبْرِ بِكَسْرِ الْكَافِ","وَبِسُكُونِ الْبَا بِلَا خِلَافِ","Le sens de l'orgueil (kibr, avec la voyelle « i » sous le kâf et le sukûn sur le bâ), sans divergence, est le suivant :"],
+["قُلْ رَفْعُ نَفْسٍ مَعَ كَتْمِ الْحَقِّ","مَعَ تَعَظُّمٍ وَغَمْطُ الْخَلْقِ","s'élever soi-même en dissimulant la vérité, se croire important et mépriser les autres créatures."],
+["حَقِيقَةُ الرِّيَا لَدَى الْأَكْيَاسِ","إِيقَاعُ قُرْبَةٍ لِقَصْدِ النَّاسِ","L'ostentation (riyâ'), selon les plus avisés, c'est accomplir un acte de dévotion en visant les créatures."],
+["وَهْوَ لَدَى إِمَامِنَا الْغَزَالِي","إِكْثَارُ طَاعَاتٍ مَعَ الْمَعَالِي","Selon notre Guide Al-Ghazâlî, c'est multiplier les actes d'obéissance et faire étalage de belles qualités…"]
+];
+
+const toAr = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const poem = document.getElementById("poem");
+let list = null;
+V.forEach(([s1, s2, fr], i) => {
+  const n = i + 1;
+  if (PAGES[n]) {
+    const m = document.createElement("div");
+    m.className = "page-mark"; m.textContent = "Page " + PAGES[n];
+    poem.appendChild(m);
+  }
+  if (SECTIONS[n]) {
+    const h = document.createElement("div");
+    h.className = "section-title";
+    h.innerHTML = `<h2 class="ar">${SECTIONS[n].ar}</h2><p class="fr">${SECTIONS[n].fr}</p>`;
+    poem.appendChild(h);
+  }
+  if (PAGES[n] || SECTIONS[n] || !list) { list = document.createElement("ol"); list.className = "verses"; poem.appendChild(list); }
+  const li = document.createElement("li");
+  li.className = "bayt"; li.id = "v" + n; li.dataset.n = n;
+  li.innerHTML = `<span class="num" title="Vers ${n}" aria-label="Vers ${n}">${n}</span>
+    <p class="ar-line" lang="ar" style="margin:0"><span class="s1">${s1}</span><span class="s2">${s2}</span></p>
+    <p class="fr-line" lang="fr">${fr}</p>
+    <button type="button" class="mark" data-n="${n}">Début ici <span class="t"></span></button>`;
+  list.appendChild(li);
+});
+
+const root = document.documentElement;
+const btn = document.getElementById("toggle-fr");
+const size = document.getElementById("ar-size");
+function setFr(on){ document.body.classList.toggle("hide-fr", !on); btn.setAttribute("aria-pressed", on); try{localStorage.setItem("jn-fr", on?"1":"0")}catch(e){} }
+function setSize(v){ root.style.setProperty("--ar-size", v + "rem"); try{localStorage.setItem("jn-size", v)}catch(e){} }
+btn.addEventListener("click", () => setFr(btn.getAttribute("aria-pressed") !== "true"));
+size.addEventListener("input", e => setSize(e.target.value));
+/* ---------- Audio : un passage par bayt, sur plusieurs fichiers ---------- */
+const FILES = ["diawwharun.mp3", "diawharun2.mp3"];
+// Repères intégrés : bayt -> [n° de fichier, secondes]. 0 = ouverture.
+const BAKED_TIMES = {
+  0:[0,307.0], 1:[0,521.4], 2:[0,569.3], 3:[0,606.8], 4:[0,619.9], 5:[0,651.9], 6:[0,706.6],
+  7:[1,0], 8:[1,29.5], 9:[1,61.3], 10:[1,77.2], 11:[1,270.2], 12:[1,299.6], 13:[1,318.8], 14:[1,356.4],
+  15:[1,410.2], 16:[1,465.8], 17:[1,474.8], 18:[1,529.6], 19:[1,536.9], 20:[1,544.8], 21:[1,566.0], 22:[1,634.5]
+};
+let times = Object.assign({}, BAKED_TIMES);
+try{ const saved = JSON.parse(localStorage.getItem("jn-times2") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
+
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("play"), playIco = document.getElementById("play-ico");
+const seek = document.getElementById("seek"), ptime = document.getElementById("ptime"), nowEl = document.getElementById("now");
+const syncBtn = document.getElementById("toggle-sync"), out = document.getElementById("times-out");
+const label = n => n == 0 ? "Ouverture" : "Bayt " + n;
+const fmt = s => { s = Math.max(0, s|0); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); };
+const els = n => n == 0 ? document.querySelector(".opening") : document.getElementById("v" + n);
+let fileIdx = 0, stopAt = null, current = null, pendingSeek = null;
+
+function loadFile(i, at, play){
+  if (i !== fileIdx){ fileIdx = i; audio.src = FILES[i]; pendingSeek = at || 0; audio.load(); }
+  else audio.currentTime = at || 0;
+  if (play) audio.play().catch(()=>{});
+}
+audio.addEventListener("loadedmetadata", () => {
+  seek.max = audio.duration;
+  if (pendingSeek != null){ audio.currentTime = pendingSeek; pendingSeek = null; }
+});
+function keysIn(f){ return Object.keys(times).map(Number).filter(k => times[k][0] === f).sort((a,b)=>times[a][1]-times[b][1]); }
+function segment(n){
+  const st = times[n]; if (!st) return null;
+  const later = keysIn(st[0]).map(k => times[k][1]).filter(t => t > st[1] + 0.05);
+  return { file: st[0], start: st[1], end: later.length ? Math.min(...later) : null };
+}
+function refresh(){
+  for (let n = 0; n <= V.length; n++){
+    const el = els(n); if (!el) continue;
+    const has = !!times[n];
+    el.classList.toggle("no-audio", !has);
+    const t = el.querySelector(".mark .t"); if (t) t.textContent = has ? "· partie " + (times[n][0]+1) + " " + fmt(times[n][1]) : "";
+    const num = el.querySelector(".num"); if (num) num.classList.toggle("has-audio", has);
+  }
+  const obj = {}; Object.keys(times).map(Number).sort((a,b)=>a-b).forEach(k => obj[k] = [times[k][0], Math.round(times[k][1]*10)/10]);
+  out.value = JSON.stringify(obj);
+}
+function save(){ try{ localStorage.setItem("jn-times2", JSON.stringify(times)); }catch(e){} }
+function setActive(n){
+  if (current === n) return;
+  if (current != null && els(current)) els(current).classList.remove("active");
+  current = n;
+  if (n != null && els(n)) els(n).classList.add("active");
+  nowEl.textContent = n != null ? label(n) + " · partie " + (fileIdx+1) : "Partie " + (fileIdx+1) + " · touchez un bayt marqué ▸";
+}
+function playVerse(n){
+  const seg = segment(n); if (!seg) return;
+  stopAt = document.body.classList.contains("sync") ? null : seg.end;
+  current = null; loadFile(seg.file, seg.start, true); setActive(+n);
+}
+function whichAt(t){ let best = null; for (const k of keysIn(fileIdx)) if (times[k][1] <= t + 0.05) best = k; return best; }
+
+playBtn.addEventListener("click", () => { if (audio.paused){ stopAt = null; audio.play().catch(()=>{}); } else audio.pause(); });
+audio.addEventListener("play", () => { playIco.setAttribute("d","M4 2.5h3v11H4zM9 2.5h3v11H9z"); playBtn.setAttribute("aria-label","Pause"); });
+audio.addEventListener("pause", () => { playIco.setAttribute("d","M4 2.5v11l9-5.5z"); playBtn.setAttribute("aria-label","Lecture"); });
+audio.addEventListener("ended", () => { if (stopAt == null && fileIdx < FILES.length - 1) loadFile(fileIdx + 1, 0, true); });
+audio.addEventListener("timeupdate", () => {
+  const t = audio.currentTime;
+  if (stopAt != null && t >= stopAt){ audio.pause(); audio.currentTime = stopAt; stopAt = null; }
+  seek.value = t; ptime.textContent = fmt(t) + " / " + fmt(audio.duration || 0);
+  const k = whichAt(t); if (k != null) setActive(k);
+});
+seek.addEventListener("input", () => { audio.currentTime = +seek.value; stopAt = null; });
+
+document.addEventListener("click", e => {
+  const mark = e.target.closest(".mark");
+  if (mark){
+    e.stopPropagation();
+    times[mark.dataset.n] = [fileIdx, Math.max(0, audio.currentTime - 0.3)];
+    save(); refresh(); current = null; setActive(+mark.dataset.n);
+    return;
+  }
+  const v = e.target.closest(".bayt, .opening");
+  if (v && !e.target.closest("button,input,textarea,select")) playVerse(v.dataset.n);
+});
+syncBtn.addEventListener("click", () => {
+  const on = !document.body.classList.contains("sync");
+  document.body.classList.toggle("sync", on); syncBtn.setAttribute("aria-pressed", on);
+  if (on) stopAt = null;
+});
+document.getElementById("part").addEventListener("change", e => { stopAt = null; current = null; loadFile(+e.target.value, 0, false); setActive(null); });
+audio.addEventListener("loadstart", () => { document.getElementById("part").value = fileIdx; });
+document.getElementById("back5").addEventListener("click", () => audio.currentTime = Math.max(0, audio.currentTime - 5));
+document.getElementById("fwd5").addEventListener("click", () => audio.currentTime += 5);
+const rateBtn = document.getElementById("rate"); const rates = [1, 1.25, 1.5, 0.75];
+rateBtn.addEventListener("click", () => { const r = rates[(rates.indexOf(audio.playbackRate)+1) % rates.length]; audio.playbackRate = r; rateBtn.textContent = "Vitesse ×" + r; });
+document.getElementById("copy-times").addEventListener("click", () => {
+  const msg = document.getElementById("copy-msg");
+  navigator.clipboard.writeText(out.value).then(() => msg.textContent = "Copié.", () => { out.select(); msg.textContent = "Sélectionné : copie avec ton clavier."; });
+});
+document.getElementById("clear-times").addEventListener("click", () => {
+  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times2"); }catch(e){} refresh();
+});
+refresh();
+
+try{
+  const f = localStorage.getItem("jn-fr"); if (f === "0") setFr(false);
+  const s = localStorage.getItem("jn-size"); if (s) { size.value = s; setSize(s); }
+}catch(e){}
+</script>
+</body>
+</html>
