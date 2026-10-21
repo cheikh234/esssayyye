@@ -317,6 +317,69 @@ footer{font-family:var(--f-display);letter-spacing:.04em}
 .slide .s-ar{background:none}
 .fr-line,.slide .s-fr{color:#f2e5b6!important}
 .num text,.slide .medal text{fill:#f2e5b6}
+
+/* Traduction : même dégradé, en crème doré */
+.fr-line .frg{background:linear-gradient(180deg,#f7e7b4 0%,#efd89a 40%,#e0c07a 75%,#cfa95f 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* ===== Lecteur façon appli musique / podcast ===== */
+.player{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
+.player-in.np{display:grid;gap:10px;max-width:600px;padding:14px 16px 12px;border-radius:26px;border:1px solid rgba(240,200,110,.22);
+  background:
+    radial-gradient(120% 140% at 0% 0%,rgba(240,196,100,.28),transparent 45%),
+    radial-gradient(120% 140% at 100% 100%,rgba(23,120,66,.55),transparent 55%),
+    linear-gradient(135deg,#0d4a2a 0%,#082f1b 55%,#2a1d07 100%);
+  box-shadow:0 24px 50px -18px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,236,190,.12);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.np-top{display:flex;align-items:center;gap:12px;min-width:0}
+.np-art{position:relative;flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  background:linear-gradient(145deg,#ffe29a 0%,#e7b45a 50%,#b47a26 100%);box-shadow:0 8px 18px -6px rgba(231,180,90,.6)}
+.np-art svg{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);opacity:.45}
+.np-n{position:relative;font-family:var(--f-body);font-weight:600;font-size:1rem;color:#2b1d08;font-variant-numeric:tabular-nums}
+.eq{position:absolute;inset:0;display:none;justify-content:center;gap:3px;align-items:center;height:auto;padding:14px 0}
+.eq i{width:4px;background:#2b1d08;border-radius:2px;height:30%;align-self:center}
+.np.playing .eq{display:flex}
+.np.playing .np-n,.np.playing .np-art svg{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .np.playing .eq i{animation:eq 1s ease-in-out infinite}
+  .np.playing .eq i:nth-child(2){animation-delay:-.4s}.np.playing .eq i:nth-child(3){animation-delay:-.2s}.np.playing .eq i:nth-child(4){animation-delay:-.7s}
+  @keyframes eq{0%,100%{height:25%}50%{height:100%}}
+  .np-btn,.pbtn{transition:transform .15s ease,background-color .2s}
+  .np-btn:active,.pbtn:active{transform:scale(.92)}
+}
+.np-meta{flex:1;min-width:0;display:grid;gap:2px}
+.np .now{display:flex;gap:8px;align-items:baseline;min-width:0;font-family:var(--f-display);font-size:.95rem;letter-spacing:.03em;color:#fbecc4;white-space:nowrap;overflow:hidden}
+.np .now .inc{font-family:var(--f-ar);font-size:1.15rem;font-weight:700;color:#f0c464;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:rtl}
+.np-sub{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:.72rem;letter-spacing:.06em;color:rgba(243,226,180,.62);white-space:nowrap;overflow:hidden}
+.np .part select{font:inherit;font-size:.7rem;color:#f0c464;background:rgba(0,0,0,.22);border:1px solid rgba(240,196,100,.25);border-radius:999px;padding:2px 8px;cursor:pointer}
+.np .part select option{background:#0b3a22;color:#fbecc4}
+.np-ctrl{display:flex;align-items:center;gap:6px;flex:none}
+.np-btn{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:#f6dc9c;display:grid;place-items:center;cursor:pointer}
+.np-btn svg{width:20px;height:20px}
+.np-btn:hover{background:rgba(255,236,190,.08)}
+.np .pbtn{width:52px;height:52px;border-radius:50%;border:0;color:#2b1d08;background:linear-gradient(145deg,#ffe7a3 0%,#f0c464 45%,#c98d33 100%);
+  box-shadow:0 10px 22px -8px rgba(240,196,100,.75),inset 0 1px 0 rgba(255,255,255,.5)}
+.np .pbtn svg{width:20px;height:20px}
+.np .pbtn.small{width:auto;height:28px;color:#f0c464;background:rgba(0,0,0,.2);border:1px solid rgba(240,196,100,.25);box-shadow:none;font-size:.74rem}
+.np-btn:focus-visible,.np .pbtn:focus-visible,.np .part select:focus-visible{outline:2px solid #f0c464;outline-offset:2px}
+.np-bar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.np-t{font-family:var(--f-body);font-size:.74rem;color:rgba(243,226,180,.7);font-variant-numeric:tabular-nums;min-width:2.6em}
+.np-t:last-child{text-align:right}
+.np #seek{height:18px}
+.np #seek::-webkit-slider-runnable-track{height:5px;border-radius:5px;background:linear-gradient(90deg,#ffe29a 0%,#f0c464 calc(var(--fill,0%) * .6),#d89a3e var(--fill,0%),rgba(255,236,190,.16) var(--fill,0%))}
+.np #seek::-moz-range-track{height:5px;border-radius:5px;background:rgba(255,236,190,.16)}
+.np #seek::-moz-range-progress{height:5px;border-radius:5px;background:linear-gradient(90deg,#ffe29a,#d89a3e)}
+.np #seek::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;margin-top:-5px;border-radius:50%;background:#fff3cf;border:0;box-shadow:0 0 0 4px rgba(240,196,100,.25),0 2px 6px rgba(0,0,0,.4)}
+.np #seek::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff3cf;border:0;box-shadow:0 0 0 4px rgba(240,196,100,.25)}
+.np .sync-tools{justify-content:center}
+@media (max-width:620px){
+  .player-in.np{border-radius:22px;padding:12px 12px 10px}
+  .np-art{width:46px;height:46px;border-radius:12px}
+  .np .pbtn{width:48px;height:48px}
+  .np-btn{width:34px;height:34px}
+  .np .now{font-size:.88rem}
+  .np .part{display:none}
+}
 </style>
 </head>
 <body>
@@ -329,7 +392,7 @@ footer{font-family:var(--f-display);letter-spacing:.04em}
     <svg class="ornament" viewBox="0 0 220 16" aria-hidden="true"><path d="M0 8h88M132 8h88" stroke="currentColor" stroke-width="1"/><path d="M110 1l7 7-7 7-7-7z" fill="none" stroke="currentColor"/><path d="M110 5l3 3-3 3-3-3z" fill="currentColor"/><circle cx="96" cy="8" r="1.8" fill="currentColor"/><circle cx="124" cy="8" r="1.8" fill="currentColor"/></svg>
     <p class="fr">Le Joyau précieux, dans la versification de la prose d'Al-Akhdari</p>
     <p class="author">Cheikh Ahmadou Bamba Khadimou Rassoul</p>
-    <div class="stats"><span class="stat">Bayts 1–75</span><span class="stat">Pages 3–7</span><span class="stat">Audio wolof · bayts 1–22</span></div>
+    <div class="stats"><span class="stat">Bayts 1–75</span><span class="stat">Pages 3–7</span><span class="stat">Audio wolof · bayts 1–50</span></div>
   </header>
 
   <div class="toolbar" role="toolbar" aria-label="Options de lecture">
@@ -384,7 +447,7 @@ footer{font-family:var(--f-display);letter-spacing:.04em}
 
   <div id="poem"></div>
 
-  <p class="continue">Audio disponible pour l'ouverture et les bayts 1 à 22. Le vers 75 se poursuit au vers 76 (page 8 de l'édition arabe).</p>
+  <p class="continue">Audio disponible pour l'ouverture et les bayts 1 à 50. Le vers 75 se poursuit au vers 76 (page 8 de l'édition arabe).</p>
   <footer>
     <span>Texte arabe : édition Al-Maktaba al-Mouridiyya · Traduction française : « Jawharu-n-Nafîs, le Joyau précieux »</span>
     <span>Prototype de lecture — pages 1 à 7 · Audio : lecture et explication en wolof</span>
@@ -392,16 +455,30 @@ footer{font-family:var(--f-display);letter-spacing:.04em}
 </div>
 
 <div class="player" role="region" aria-label="Lecteur audio">
-  <div class="player-in">
-    <button type="button" class="pbtn" id="play" aria-label="Lecture">
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path id="play-ico" d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>
-    </button>
-    <div class="pinfo">
-      <span class="now" id="now">Touchez un bayt doré pour l’écouter</span>
-      <input type="range" id="seek" min="0" max="0" step="0.05" value="0" aria-label="Position dans l'audio">
+  <div class="player-in np">
+    <div class="np-top">
+      <div class="np-art" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><rect x="30" y="30" width="60" height="60" transform="rotate(45 60 60)" fill="none" stroke="#2b1d08" stroke-width="3"/><rect x="27" y="27" width="66" height="66" fill="none" stroke="#2b1d08" stroke-width="3"/></svg>
+        <span class="np-n" id="np-n">۞</span>
+        <span class="eq"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <div class="np-meta">
+        <span class="now" id="now">Touchez un bayt pour l’écouter</span>
+        <span class="np-sub"><span id="np-sub">Al-Jawhar an-Nafîs · Audio wolof</span>
+          <label class="part" for="part"><select id="part" aria-label="Partie audio"><option value="0">Partie 1</option><option value="1">Partie 2</option><option value="2">Partie 3</option><option value="3">Partie 4</option></select></label></span>
+      </div>
+      <div class="np-ctrl">
+        <button type="button" class="np-btn" id="np-prev" aria-label="Bayt précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9.5 12z" fill="currentColor"/></svg></button>
+        <button type="button" class="pbtn" id="play" aria-label="Lecture"><svg viewBox="0 0 16 16" aria-hidden="true"><path id="play-ico" d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg></button>
+        <button type="button" class="np-btn" id="np-next" aria-label="Bayt suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z" fill="currentColor"/></svg></button>
+      </div>
     </div>
-    <span class="ptime" id="ptime">0:00</span>
-    <label class="ptime part" for="part">Audio <select id="part"><option value="0">Partie 1</option><option value="1">Partie 2</option></select></label>
+    <div class="np-bar">
+      <span class="np-t" id="np-cur">0:00</span>
+      <input type="range" id="seek" min="0" max="0" step="0.05" value="0" aria-label="Position dans l'audio">
+      <span class="np-t" id="np-dur">0:00</span>
+    </div>
+    <span class="ptime" id="ptime" hidden></span>
     <div class="sync-tools">
       <button type="button" class="pbtn small" id="back5">−5 s</button>
       <button type="button" class="pbtn small" id="fwd5">+5 s</button>
@@ -517,7 +594,7 @@ V.forEach(([s1, s2, fr], i) => {
   li.className = "bayt"; li.id = "v" + n; li.dataset.n = n;
   li.innerHTML = `<span class="num" title="Vers ${n}" aria-label="Vers ${n}"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="30" y="30" width="60" height="60" transform="rotate(45 60 60)" fill="none" stroke="#ebc876" stroke-width="2.2"/><rect x="27" y="27" width="66" height="66" fill="#1b2a14" fill-opacity=".55" stroke="#ebc876" stroke-width="2.2"/><text x="60" y="70" text-anchor="middle" font-size="30">${n}</text></svg></span>
     <p class="ar-line" lang="ar"><span class="s1">${s1}</span><span class="sep" aria-hidden="true"></span><span class="s2">${s2}</span></p>
-    <p class="fr-line" lang="fr">${fr}</p>
+    <p class="fr-line" lang="fr"><span class="frg">${fr}</span></p>
     <span class="nudges"><button type="button" class="mark" data-n="${n}">Début ici <span class="t"></span></button><button type="button" class="nudge" data-n="${n}" data-d="-0.5">−0,5 s</button><button type="button" class="nudge" data-n="${n}" data-d="0.5">+0,5 s</button></span><span class="has-dot" aria-hidden="true"></span><span class="kprog" aria-hidden="true"><i></i></span>`;
   list.appendChild(li);
 });
@@ -530,15 +607,16 @@ function setSize(v){ root.style.setProperty("--ar-size", v + "rem"); try{localSt
 btn.addEventListener("click", () => setFr(btn.getAttribute("aria-pressed") !== "true"));
 size.addEventListener("input", e => setSize(e.target.value));
 /* ---------- Audio : un passage par bayt, sur plusieurs fichiers ---------- */
-const FILES = ["diawwharun.mp3", "diawharun2.mp3"];
+const FILES = ["diawwharun.mp3", "diawharun2.mp3", "diawharun3.mp3", "diawharun4.mp3"];
 // Repères intégrés : bayt -> [n° de fichier, secondes]. 0 = ouverture.
 const BAKED_TIMES = {
   0:[0,307.28], 1:[0,521.67], 2:[0,569.62], 3:[0,606.96], 4:[0,620.87], 5:[0,650.3], 6:[0,706.62],
   7:[1,0], 8:[1,24.43], 9:[1,61.5], 10:[1,145.3], 11:[1,270.19], 12:[1,305.3], 13:[1,319.07], 14:[1,356.95],
-  15:[1,410.3], 16:[1,442.5], 17:[1,488.79], 18:[1,527.17], 19:[1,537.0], 20:[1,547.3], 21:[1,626.6], 22:[1,640.85]
+  15:[1,410.3], 16:[1,442.5], 17:[1,488.79], 18:[1,527.17], 19:[1,537.0], 20:[1,547.3], 21:[1,626.6], 22:[1,640.85],
+  23:[2,57.76], 24:[2,88.68], 25:[2,115.27], 26:[2,145.32], 27:[2,189.06], 28:[2,254.33], 29:[2,268.54], 30:[2,343.34], 31:[2,379.76], 32:[2,400.87], 33:[2,457.63], 34:[2,472.22], 35:[2,519.33], 36:[2,549.69], 37:[3,1.54], 38:[3,45.26], 39:[3,67.31], 40:[3,172.33], 41:[3,197.41], 42:[3,238.69], 43:[3,257.07], 44:[3,271.71], 45:[3,371.35], 46:[3,424.83], 47:[3,517.45], 48:[3,565.99], 49:[3,627.7], 50:[3,659.83]
 };
 let times = Object.assign({}, BAKED_TIMES);
-try{ const saved = JSON.parse(localStorage.getItem("jn-times6") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
+try{ const saved = JSON.parse(localStorage.getItem("jn-times7") || "null"); if (saved) times = Object.assign(times, saved); }catch(e){}
 
 const audio = document.getElementById("audio");
 const playBtn = document.getElementById("play"), playIco = document.getElementById("play-ico");
@@ -575,7 +653,7 @@ function refresh(){
   const obj = {}; Object.keys(times).map(Number).sort((a,b)=>a-b).forEach(k => obj[k] = [times[k][0], Math.round(times[k][1]*10)/10]);
   out.value = JSON.stringify(obj);
 }
-function save(){ try{ localStorage.setItem("jn-times6", JSON.stringify(times)); }catch(e){} }
+function save(){ try{ localStorage.setItem("jn-times7", JSON.stringify(times)); }catch(e){} }
 var setActive = function(n){
   if (current === n) return;
   if (current != null && els(current)) els(current).classList.remove("active");
@@ -583,7 +661,7 @@ var setActive = function(n){
   if (n != null && els(n)) els(n).classList.add("active");
   if (n == null){ nowEl.textContent = "Touchez un bayt pour l’écouter"; return; }
   const inc = n == 0 ? "بِسْمِ اللهِ الرَّحْمَانِ الرَّحِيمِ" : V[n-1][0];
-  nowEl.innerHTML = `<span>${label(n)}</span><span class="inc" lang="ar">${inc}</span>`;
+  nowEl.innerHTML = `<span class="inc" lang="ar">${inc}</span>`;
 }
 let seg = null; // passage du bayt en cours : {start, end}
 const inSync = () => document.body.classList.contains("sync");
@@ -664,7 +742,7 @@ document.getElementById("copy-times").addEventListener("click", () => {
   navigator.clipboard.writeText(out.value).then(() => msg.textContent = "Copié.", () => { out.select(); msg.textContent = "Sélectionné : copie avec ton clavier."; });
 });
 document.getElementById("clear-times").addEventListener("click", () => {
-  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times6"); }catch(e){} refresh();
+  times = Object.assign({}, BAKED_TIMES); try{ localStorage.removeItem("jn-times7"); }catch(e){} refresh();
 });
 refresh();
 
@@ -722,6 +800,33 @@ viewBtn.addEventListener("click", () => setView(!document.body.classList.contain
 let startN = 1; try{ const s = localStorage.getItem("jn-shown"); if (s != null) startN = +s; }catch(e){}
 showSlide(startN, false);
 setView(false);
+
+/* ---------- Lecteur moderne ---------- */
+(function(){
+  const npCard = document.querySelector(".np"), npN = document.getElementById("np-n"), npSub = document.getElementById("np-sub");
+  const npCur = document.getElementById("np-cur"), npDur = document.getElementById("np-dur");
+  new MutationObserver(() => {
+    const m = ptime.textContent.split(" / ");
+    if (m.length === 2){ npCur.textContent = m[0]; npDur.textContent = "-" + fmtT(Math.max(0, toSec(m[1]) - toSec(m[0]))); }
+  }).observe(ptime, {childList:true, characterData:true, subtree:true});
+  function toSec(s){ const p = s.split(":").map(Number); return p[0]*60 + (p[1]||0); }
+  const syncCard = () => {
+    npCard.classList.toggle("playing", !audio.paused);
+    npN.textContent = current == null ? "۞" : (current == 0 ? "۞" : current);
+    npSub.textContent = current == null ? "Al-Jawhar an-Nafîs · Audio wolof" : (current == 0 ? "Ouverture" : "Bayt " + current + " sur " + V.length) + " · Partie " + (fileIdx + 1);
+  };
+  ["play","pause","timeupdate","loadedmetadata"].forEach(ev => audio.addEventListener(ev, syncCard));
+  function step(d){
+    let n = (current == null ? (d > 0 ? -1 : V.length + 1) : +current) + d;
+    while (n >= 0 && n <= V.length && !times[n]) n += d;
+    if (n < 0 || n > V.length) return;
+    playVerse(n);
+    const el = els(n); if (el) el.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
+  }
+  document.getElementById("np-prev").addEventListener("click", () => step(-1));
+  document.getElementById("np-next").addEventListener("click", () => step(1));
+  syncCard();
+})();
 </script>
 </body>
 </html>
